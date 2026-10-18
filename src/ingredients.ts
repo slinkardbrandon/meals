@@ -72,5 +72,12 @@ export const ingredients = {
   honey: { aisle: 'pantry', staple: true },
   'fresh ginger': { aisle: 'produce', aliases: ['ginger', 'ginger root'] },
   scallion: { aisle: 'produce', aliases: ['scallions', 'green onion', 'green onions'] },
+  'chuck roast': { aisle: 'meat', aliases: ['beef chuck'] },
+  'beef broth': { aisle: 'pantry', aliases: ['beef stock', 'low-sodium beef broth'] },
+  'sesame oil': { aisle: 'pantry', staple: true },
+  'sesame seeds': { aisle: 'spices', staple: true },
+  'chili crisp': { aisle: 'pantry' },
+  'Fortune yakisoba noodles': { aisle: 'produce', aliases: ['yakisoba noodles', 'precooked noodles'] },
+  'Meat Church Holy Gospel': { aisle: 'spices', staple: true, aliases: ['beef seasoning', 'Holy Gospel'] },
   'red pepper flakes': { aisle: 'spices', staple: true, aliases: ['crushed red pepper'] },
 } as const satisfies Record<string, IngredientInfo>
