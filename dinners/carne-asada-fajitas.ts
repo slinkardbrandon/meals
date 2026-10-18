@@ -31,5 +31,6 @@ export default {
   notes: [
     'Card says the onion and garlic powder can be swapped for 1 tsp garlic.',
     'Card gives no meat or veggie amounts; 1 lb steak, 1 onion, and 2 peppers are our estimates from the seasoning (about 2 1/2 tbsp of spices).',
+    'We occasionally sub chicken for the steak.',
   ],
 } satisfies Recipe
