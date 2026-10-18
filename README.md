@@ -11,7 +11,22 @@ kid_friendly: true | false
 protein: beef | chicken | turkey | pork | egg | beans | chickpea | mixed | none
 method: stovetop | oven | crockpot | instant-pot | grill | smoker | no-cook
 source: https://... (optional)
+servings: 6
+ingredients:
+  - { item: ground beef, qty: 1, unit: lb }
 ---
 ```
 
 Body sections: `## Ingredients`, `## Steps`, `## Notes` (our modifications to the source recipe).
+
+## Lunch item format
+
+One file per item in `lunch-items/`. Per-kid quirks live in `kids.yml`.
+
+```yaml
+---
+name: Turkey Sandwich
+category: main | side | snack | drink
+kids: { sylvia: likes, wally: tolerates }  # missing kid = won't eat it
+---
+```
