@@ -81,6 +81,7 @@ export const ingredients = {
   'vanilla extract': { aisle: 'spices', staple: true, aliases: ['vanilla'] },
   'long grain rice': { aisle: 'pantry', aliases: ['rice', 'white rice'] },
   'rice vinegar': { aisle: 'pantry' },
+  'white pepper': { aisle: 'spices', staple: true, aliases: ['ground white pepper'] },
   'matchstick carrots': { aisle: 'produce', aliases: ['shredded carrots', 'julienned carrots'] },
   'mini cucumber': { aisle: 'produce', aliases: ['mini cucumbers', 'Persian cucumber'] },
   'soy sauce': { aisle: 'pantry', staple: true },
