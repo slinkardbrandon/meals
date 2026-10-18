@@ -79,4 +79,6 @@ export const ingredients = {
   'fresh ginger': { aisle: 'produce', aliases: ['ginger', 'ginger root'] },
   scallion: { aisle: 'produce', aliases: ['scallions', 'green onion', 'green onions'] },
   'red pepper flakes': { aisle: 'spices', staple: true, aliases: ['crushed red pepper'] },
+  'tater tots': { aisle: 'frozen', aliases: ['Ore-Ida tater tots', 'tots'] },
+  'flour tortilla': { aisle: 'bakery', aliases: ['tortillas', 'flour tortillas', 'burrito tortillas'] },
 } as const satisfies Record<string, IngredientInfo>
