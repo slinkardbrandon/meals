@@ -84,7 +84,6 @@ export const ingredients = {
   'fresh ginger': { aisle: 'produce', aliases: ['ginger', 'ginger root'] },
   scallion: { aisle: 'produce', aliases: ['scallions', 'green onion', 'green onions'] },
   'chuck roast': { aisle: 'meat', aliases: ['beef chuck'] },
-  'round steak': { aisle: 'meat', aliases: ['beef round steak', 'round roast'] },
   'au jus seasoning': { aisle: 'pantry', aliases: ['au jus mix', 'au jus packet'] },
   'sliced provolone': { aisle: 'deli', aliases: ['provolone', 'provolone slices'] },
   'sub rolls': { aisle: 'bakery', aliases: ['hoagie rolls', 'sub roll', 'hoagie buns'] },
