@@ -1,6 +1,6 @@
 ---
 name: Salsa Verde Chicken Tacos
-kid_friendly: false
+kid_friendly: true
 protein: chicken
 method: crockpot
 source: https://downshiftology.com/recipes/crockpot-salsa-verde-chicken/
@@ -13,3 +13,4 @@ source: https://downshiftology.com/recipes/crockpot-salsa-verde-chicken/
 ## Steps
 
 ## Notes
+- Chicken slow cooked in salsa verde, tortillas on the side. Also called salsa chicken / chicken tacos.

@@ -1,12 +1,12 @@
 ---
-name: Salsa Chicken
+name: Chicken Caesar Salad
 kid_friendly: false
 protein: chicken
-method: crockpot
+method: no-cook
 source: 
 ---
 
-# Salsa Chicken
+# Chicken Caesar Salad
 
 ## Ingredients
 
