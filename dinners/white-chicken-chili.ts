@@ -1,0 +1,40 @@
+import type { Recipe } from '../src/types'
+
+export default {
+  title: 'White Chicken Chili',
+  kidFriendly: true,
+  protein: 'chicken',
+  method: 'stovetop',
+  source: 'https://www.cookingclassy.com/white-chicken-chili/',
+  servings: 6,
+  ingredients: [
+    { item: 'yellow onion', qty: 1, note: 'small, diced' },
+    { item: 'olive oil', qty: 1, unit: 'tbsp' },
+    { item: 'minced garlic', qty: 2, unit: 'clove' },
+    { item: 'chicken broth', qty: 2, unit: 'can', note: '14.5 oz, low sodium' },
+    { item: 'diced green chiles', qty: 1, unit: 'can', note: '7 oz' },
+    { item: 'cumin', qty: 1.5, unit: 'tsp' },
+    { item: 'paprika', qty: 0.5, unit: 'tsp' },
+    { item: 'dried oregano', qty: 0.5, unit: 'tsp' },
+    { item: 'ground coriander', qty: 0.5, unit: 'tsp' },
+    { item: 'cayenne', qty: 0.25, unit: 'tsp' },
+    { item: 'salt' },
+    { item: 'black pepper' },
+    { item: 'cream cheese', qty: 8, unit: 'oz', note: 'Neufchatel (light), cubed and softened' },
+    { item: 'frozen corn', qty: 1.25, unit: 'cup', note: 'or fresh' },
+    { item: 'cannellini beans', qty: 2, unit: 'can', note: '15 oz, drained and rinsed' },
+    { item: 'rotisserie chicken', qty: 2.5, unit: 'cup', note: 'shredded; leftover chicken works' },
+    { item: 'lime', qty: 1, unit: 'tbsp', note: 'fresh juice' },
+  ],
+  steps: [
+    'Heat the olive oil in a large pot over medium-high. Sauté the onion 4 minutes, then the garlic 30 seconds.',
+    'Add the broth, green chiles, cumin, paprika, oregano, coriander, cayenne, and salt and pepper. Bring just to a boil, then simmer on medium-low 15 minutes.',
+    'Drain and rinse the beans. Purée 1 cup of them with 1/4 cup broth from the pot until nearly smooth.',
+    'Stir in the cream cheese, corn, whole beans, and puréed beans. Simmer 5-10 minutes more.',
+    'Stir in the chicken and lime juice.',
+  ],
+  notes: [
+    'We skip the source\'s cilantro (2 tbsp, plus garnish).',
+    'Source garnishes are optional: tortilla chips, Monterey Jack, avocado.',
+  ],
+} satisfies Recipe
