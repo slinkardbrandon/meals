@@ -18,16 +18,17 @@ export default {
     { item: 'apple', note: 'optional' },
     { item: 'mayonnaise', qty: 1, unit: 'cup', note: 'ranch' },
     { item: 'plain yogurt', qty: 1, unit: 'cup', note: 'ranch' },
-    { item: 'Italian dressing mix', qty: 1, unit: 'pkg', note: 'ranch' },
+    { item: 'Italian seasoning', note: 'ranch, to taste' },
   ],
   steps: [
     'Hard boil the eggs, cool, and slice.',
-    'Whisk the mayo, yogurt, and Italian dressing mix into ranch.',
+    'Whisk the mayo, yogurt, and Italian seasoning into ranch.',
     'Toss the romaine and spinach. Top with eggs, deli meat, cheddar, carrots, cucumber, and apple if using.',
     'Season with salt and pepper. Serve with the ranch.',
   ],
   notes: [
     'Our own, no source.',
+    'Unverified: the ranch may use an Italian dressing mix packet rather than the spice.',
     'The ranch batch makes far more than one salad needs. Leftovers keep in the fridge.',
   ],
 } satisfies Recipe

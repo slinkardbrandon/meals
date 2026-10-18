@@ -100,7 +100,6 @@ export const ingredients = {
   apple: { aisle: 'produce', aliases: ['apples'] },
   mayonnaise: { aisle: 'pantry', aliases: ['mayo'] },
   'plain yogurt': { aisle: 'dairy', aliases: ['yogurt'] },
-  'Italian dressing mix': { aisle: 'pantry', aliases: ['Italian seasoning packet', 'Good Seasons Italian'] },
   'soy sauce': { aisle: 'pantry', staple: true },
   honey: { aisle: 'pantry', staple: true },
   'fresh ginger': { aisle: 'produce', aliases: ['ginger', 'ginger root'] },
