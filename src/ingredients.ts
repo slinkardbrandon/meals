@@ -24,7 +24,6 @@ export const ingredients = {
   'hamburger buns': { aisle: 'bakery', aliases: ['buns', 'hamburger bun'] },
   'white onion': { aisle: 'produce' },
   'American cheese': { aisle: 'dairy', aliases: ['American cheese slices', 'Kraft singles'] },
-  'iceberg lettuce': { aisle: 'produce', aliases: ['lettuce', 'shredded lettuce'] },
   'dill pickles': { aisle: 'pantry', aliases: ['pickles', 'sliced pickles'] },
   'frozen french fries': { aisle: 'frozen', aliases: ['fries', 'Ore-Ida fries'] },
   ketchup: { aisle: 'pantry', staple: true },

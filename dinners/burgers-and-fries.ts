@@ -15,7 +15,6 @@ export default {
     { item: 'white onion', qty: 2, note: 'thinly sliced' },
     { item: 'American cheese', qty: 4, unit: 'slice' },
     { item: 'hamburger buns', qty: 4 },
-    { item: 'iceberg lettuce', qty: 2, unit: 'cup', note: 'shredded' },
     { item: 'dill pickles', note: 'sliced' },
     { item: 'ketchup' },
     { item: 'yellow mustard' },
@@ -28,11 +27,12 @@ export default {
     'Smash the balls on the griddle to about 1/2 inch thick. Cook until the bottoms are well browned.',
     'Flip, top with onions, then cheese. Cook until the cheese melts.',
     'Brush the buns with butter and toast them on the griddle.',
-    'Build: sauce, lettuce, patty, more lettuce, pickles, more sauce, top bun.',
+    'Build: sauce, patty, pickles, more sauce, top bun.',
     'Cook the fries per the bag.',
   ],
   notes: [
     'Source uses hickory pellets and potato buns. Traeger Beef Rub is optional; salt and pepper works.',
+    'We skip the source\'s 2 cups shredded iceberg lettuce.',
     'The fries are ours, usually Ore-Ida frozen fries.',
   ],
 } satisfies Recipe
