@@ -13,6 +13,7 @@ export default {
     { item: 'chicken broth', qty: 0.5, unit: 'cup', note: 'optional; or water' },
     { item: 'salt', note: 'to season' },
     { item: 'black pepper', note: 'to season' },
+    { item: 'long grain rice', note: 'steamed, for serving' },
   ],
   steps: [
     'Season the chicken and place it in the crock pot.',
