@@ -1,32 +1,19 @@
 # Meals
 
-One file per dinner in `dinners/`. Weekly plans land in `plans/` (e.g. `plans/2026-W42.md`) and double as rotation history.
+Family dinner rotation, kid lunch packing, and grocery lists.
 
-## Dinner file format
+- `dinners/*.ts`: one recipe per file, `export default { ... } satisfies Recipe`
+- `lunch-items/*.ts`: one item per file, `satisfies LunchItem`
+- `src/ingredients.ts`: canonical ingredient registry (aisle, aliases, staple)
+- `src/kids.ts`: kids and their quirks
+- `src/types.ts`: all types
+- `plans/YYYY-Www.md`: weekly plans, also the rotation history
 
-```yaml
----
-name: Stroganoff
-kid_friendly: true | false
-protein: beef | chicken | turkey | pork | egg | beans | chickpea | mixed | none
-method: stovetop | oven | crockpot | instant-pot | grill | smoker | no-cook
-source: https://... (optional)
-servings: 6
-ingredients:
-  - { item: ground beef, qty: 1, unit: lb }
----
+## Commands
+
+```sh
+bun install
+bun run check   # tsc --noEmit; Bun strips types without checking them
 ```
 
-Body sections: `## Steps`, `## Notes` (our modifications to the source recipe).
-
-## Lunch item format
-
-One file per item in `lunch-items/`. Per-kid quirks live in `kids.yml`.
-
-```yaml
----
-name: Turkey Sandwich
-category: main | side | snack | drink
-kids: { sylvia: likes, wally: tolerates }  # missing kid = won't eat it
----
-```
+CI runs `check` on every PR.

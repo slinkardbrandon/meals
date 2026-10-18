@@ -1,29 +1,30 @@
 # Agent guide
 
-Family meal planning data. Schemas live in `README.md`; this file covers how to change things.
+Family meal planning data, typed in TS and run with Bun. Types live in `src/types.ts`.
+
+Run `bun run check` after every change. Bun does not type-check on its own.
+
+Never commit to `main`. Every change goes on a branch and merges through a PR.
 
 ## Adding or editing a dinner
 
 - Check `dinners/` for an existing match before creating a file. Variants of the same dish get one file.
-- Filename is the kebab-case name: `Chicken Caesar Salad` -> `chicken-caesar-salad.md`.
-- Ingredients go in frontmatter only, never in the body.
-- When converting a source recipe, put our changes to it in `## Notes`. Never silently rewrite the source's quantities.
-- Don't guess `kid_friendly`. If the user hasn't said, ask. The kids are picky.
+- Filename is the kebab-case title: `Chicken Caesar Salad` -> `chicken-caesar-salad.ts`.
+- When converting a source recipe, put our changes to it in `notes`. Never silently rewrite the source's quantities.
+- Don't guess `kidFriendly`. If the user hasn't said, ask. The kids are picky.
 
-## Ingredient names
+## Ingredients
 
-The grocery list merges ingredients across meals by `item`, so names must be consistent.
+The grocery list merges ingredients across meals by `item`, so every item must exist in `src/ingredients.ts`.
 
-- Use the generic, lowercase, singular name: `ground beef`, `yellow onion`, `garlic clove`.
-- Reuse an existing name before inventing one: `grep -rh "item:" dinners/ lunch-items/`.
-- Keep a brand only when it matters to us: `Prego meat sauce`, `Classico Alfredo`.
-- Units: `lb`, `oz`, `cup`, `tbsp`, `tsp`, `can`, `jar`, `pkg`, or omit for counts.
-- Pantry staples (salt, pepper, oil) still get listed so the planner can skip them deliberately.
+- Search the registry, including `aliases`, before adding an entry.
+- New entries: generic, lowercase, singular (`yellow onion`, `garlic`). Keep a brand only when it matters to us (`Prego meat sauce`).
+- Fractions go in `qty`, not `unit`: 1/4 cup is `{ qty: 0.25, unit: 'cup' }`. Add to `Unit` only for a genuinely new unit.
+- List pantry staples too, and mark them `staple: true` in the registry.
 
 ## Lunch items
 
-- Mark only preferences the user stated. A kid missing from `kids` means they won't eat it.
-- Kid names in `kids` must match keys in `kids.yml`.
+- Record only preferences the user stated. A kid missing from `kids` means they won't eat it.
 
 ## Plans
 
