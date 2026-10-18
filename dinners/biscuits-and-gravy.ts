@@ -7,10 +7,10 @@ export default {
   method: 'stovetop',
   source: 'Family recipe card (Dairy-Free Biscuits and Gravy)',
   ingredients: [
-    { item: 'breakfast sausage', qty: 1, unit: 'lb' },
+    { item: 'Jimmy Dean sausage', qty: 1, unit: 'lb', note: 'regular or mild, never hot' },
     { item: 'all-purpose flour', qty: 0.25, unit: 'cup' },
     { item: '2% milk', qty: 2.5, unit: 'cup' },
-    { item: 'refrigerated biscuits', qty: 1, unit: 'can' },
+    { item: 'Pillsbury flaky biscuits', qty: 1, unit: 'can' },
     { item: 'black pepper', note: 'to taste' },
   ],
   steps: [

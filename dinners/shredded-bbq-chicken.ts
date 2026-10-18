@@ -9,11 +9,11 @@ export default {
   ingredients: [
     { item: 'chicken breast', qty: 2, unit: 'lb', note: 'about 4 breasts' },
     { item: "Sweet Baby Ray's honey BBQ sauce", qty: 1, unit: 'cup' },
-    { item: 'Italian dressing', qty: 0.25, unit: 'cup' },
+    { item: 'Olive Garden Italian dressing', qty: 0.25, unit: 'cup' },
     { item: 'brown sugar', qty: 0.25, unit: 'cup' },
     { item: 'Worcestershire sauce', qty: 1, unit: 'tbsp' },
     { item: 'cornstarch', qty: 2, unit: 'tbsp' },
-    { item: 'hot sauce', note: 'a dash' },
+    { item: 'hot sauce', note: 'a dash; Cholula or Red Devil cayenne' },
     { item: 'salt', note: 'to taste' },
     { item: 'black pepper', note: 'to taste' },
     { item: 'garlic powder', note: 'to taste' },
