@@ -7,9 +7,9 @@ export default {
   method: 'stovetop',
   source: 'Family recipe card',
   ingredients: [
-    { item: 'flank steak', note: 'or raw sirloin strips' },
-    { item: 'yellow onion' },
-    { item: 'bell pepper' },
+    { item: 'flank steak', qty: 1, unit: 'lb', note: 'or raw sirloin strips' },
+    { item: 'yellow onion', qty: 1, note: 'sliced' },
+    { item: 'bell pepper', qty: 2, note: 'sliced' },
     { item: 'vegetable oil' },
     { item: 'cornstarch', qty: 1, unit: 'tbsp', note: 'or flour; more if needed' },
     { item: 'chili powder', qty: 2, unit: 'tsp' },
@@ -30,5 +30,6 @@ export default {
   ],
   notes: [
     'Card says the onion and garlic powder can be swapped for 1 tsp garlic.',
+    'Card gives no meat or veggie amounts; 1 lb steak, 1 onion, and 2 peppers are our estimates from the seasoning (about 2 1/2 tbsp of spices).',
   ],
 } satisfies Recipe
