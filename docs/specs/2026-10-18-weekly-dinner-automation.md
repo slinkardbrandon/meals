@@ -81,7 +81,7 @@ Week math:
 
 Groceries (pure):
 - sums qty for the same item + unit
-- one line per item; parts ordered unitless count first, then `Unit` union order: `minced garlic: 2 clove + 1 tsp`
+- one line per item; parts ordered unitless count first, then `Unit` union order: `minced garlic: 1 tsp + 2 clove`
 - qty-less entries of an item that also has qty'd entries append nothing to the qty; their notes still render: `egg noodles: 12 oz (for serving)`
 - items with no qty anywhere render as bare name
 - notes from all entries render deduped in first-seen-by-dinner-id order, in parentheses: `yellow onion: 1.5 (diced, cut into strips)`
