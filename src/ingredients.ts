@@ -117,4 +117,7 @@ export const ingredients = {
   'red pepper flakes': { aisle: 'spices', staple: true, aliases: ['crushed red pepper'] },
   'tater tots': { aisle: 'frozen', aliases: ['Ore-Ida tater tots', 'tots'] },
   'flour tortilla': { aisle: 'bakery', aliases: ['tortillas', 'flour tortillas', 'burrito tortillas'] },
+  'corn tortilla': { aisle: 'bakery', aliases: ['corn tortillas'] },
+  'canola oil': { aisle: 'pantry', staple: true },
+  toothpicks: { aisle: 'pantry', staple: true, aliases: ['toothpick'] },
 } as const satisfies Record<string, IngredientInfo>
