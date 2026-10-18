@@ -43,4 +43,9 @@ export const ingredients = {
   'all-purpose flour': { aisle: 'pantry', staple: true, aliases: ['flour'] },
   '2% milk': { aisle: 'dairy', aliases: ['milk'] },
   'Pillsbury flaky biscuits': { aisle: 'dairy', aliases: ['biscuits', 'canned biscuits'] },
+  egg: { aisle: 'dairy', aliases: ['eggs'] },
+  butter: { aisle: 'dairy', staple: true },
+  sugar: { aisle: 'pantry', staple: true, aliases: ['granulated sugar', 'white sugar'] },
+  cinnamon: { aisle: 'spices', staple: true, aliases: ['ground cinnamon'] },
+  'vanilla extract': { aisle: 'spices', staple: true, aliases: ['vanilla'] },
 } as const satisfies Record<string, IngredientInfo>
