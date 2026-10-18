@@ -1,12 +1,12 @@
 ---
-name: Mini Pizza
+name: Pizza Night
 kid_friendly: true
 protein: none
 method: oven
 source: 
 ---
 
-# Mini Pizza
+# Pizza Night
 
 ## Ingredients
 
