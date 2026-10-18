@@ -13,4 +13,5 @@ source: https://downshiftology.com/recipes/crockpot-salsa-verde-chicken/
 ## Steps
 
 ## Notes
+
 - Chicken slow cooked in salsa verde, tortillas on the side. Also called salsa chicken / chicken tacos.
