@@ -11,6 +11,7 @@ Never commit to `main`. Every change goes on a branch and merges through a PR.
 - Check `dinners/` for an existing match before creating a file. Variants of the same dish get one file.
 - Filename is the kebab-case title: `Chicken Caesar Salad` -> `chicken-caesar-salad.ts`.
 - When converting a source recipe, put our changes to it in `notes`. Never silently rewrite the source's quantities.
+- We never use cilantro. Drop it from any source recipe and say so in `notes`.
 - Don't guess `kidFriendly`. If the user hasn't said, ask. The kids are picky.
 
 ## Ingredients
