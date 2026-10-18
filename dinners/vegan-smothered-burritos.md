@@ -8,8 +8,6 @@ source:
 
 # Vegan Smothered Burritos
 
-## Ingredients
-
 ## Steps
 
 ## Notes

@@ -8,8 +8,6 @@ source:
 
 # Vegetarian Chili
 
-## Ingredients
-
 ## Steps
 
 ## Notes

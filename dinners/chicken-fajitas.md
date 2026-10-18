@@ -8,8 +8,6 @@ source:
 
 # Chicken Fajitas
 
-## Ingredients
-
 ## Steps
 
 ## Notes

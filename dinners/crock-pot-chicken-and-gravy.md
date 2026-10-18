@@ -8,8 +8,6 @@ source: https://www.plainchicken.com/crock-pot-chicken-gravy/
 
 # Crock Pot Chicken and Gravy
 
-## Ingredients
-
 ## Steps
 
 ## Notes

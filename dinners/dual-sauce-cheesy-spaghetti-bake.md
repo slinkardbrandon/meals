@@ -8,8 +8,6 @@ source:
 
 # Dual-Sauce Cheesy Spaghetti Bake
 
-## Ingredients
-
 ## Steps
 
 ## Notes

@@ -8,8 +8,6 @@ source:
 
 # Biscuits and Gravy
 
-## Ingredients
-
 ## Steps
 
 ## Notes

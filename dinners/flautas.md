@@ -8,8 +8,6 @@ source:
 
 # Flautas
 
-## Ingredients
-
 ## Steps
 
 ## Notes

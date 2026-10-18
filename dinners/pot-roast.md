@@ -8,8 +8,6 @@ source:
 
 # Pot Roast
 
-## Ingredients
-
 ## Steps
 
 ## Notes

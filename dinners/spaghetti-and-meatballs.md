@@ -8,8 +8,6 @@ source:
 
 # Spaghetti and Meatballs
 
-## Ingredients
-
 ## Steps
 
 ## Notes

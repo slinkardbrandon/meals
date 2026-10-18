@@ -8,8 +8,6 @@ source: https://kristineskitchenblog.com/honey-garlic-instant-pot-chicken-breast
 
 # Honey Garlic Chicken
 
-## Ingredients
-
 ## Steps
 
 ## Notes

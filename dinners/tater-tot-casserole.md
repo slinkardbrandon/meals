@@ -8,8 +8,6 @@ source:
 
 # Tater Tot Casserole
 
-## Ingredients
-
 ## Steps
 
 ## Notes

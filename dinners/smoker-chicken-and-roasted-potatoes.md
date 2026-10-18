@@ -8,8 +8,6 @@ source: https://www.dinneratthezoo.com/roasted-red-potatoes/
 
 # Smoker Chicken & Roasted Potatoes
 
-## Ingredients
-
 ## Steps
 
 ## Notes

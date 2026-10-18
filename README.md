@@ -17,7 +17,7 @@ ingredients:
 ---
 ```
 
-Body sections: `## Ingredients`, `## Steps`, `## Notes` (our modifications to the source recipe).
+Body sections: `## Steps`, `## Notes` (our modifications to the source recipe).
 
 ## Lunch item format
 

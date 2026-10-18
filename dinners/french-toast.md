@@ -8,8 +8,6 @@ source:
 
 # French Toast
 
-## Ingredients
-
 ## Steps
 
 ## Notes

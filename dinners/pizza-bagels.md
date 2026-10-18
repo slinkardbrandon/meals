@@ -8,8 +8,6 @@ source:
 
 # Pizza Bagels
 
-## Ingredients
-
 ## Steps
 
 ## Notes

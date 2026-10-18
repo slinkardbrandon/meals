@@ -8,8 +8,6 @@ source:
 
 # Turkey Burger Tacos
 
-## Ingredients
-
 ## Steps
 
 ## Notes

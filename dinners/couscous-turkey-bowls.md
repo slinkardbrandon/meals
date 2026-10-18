@@ -8,8 +8,6 @@ source:
 
 # Couscous (or Quinoa) Turkey Bowls
 
-## Ingredients
-
 ## Steps
 
 ## Notes

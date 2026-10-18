@@ -8,8 +8,6 @@ source: https://natashaskitchen.com/ground-beef-stroganoff/
 
 # Stroganoff
 
-## Ingredients
-
 ## Steps
 
 ## Notes

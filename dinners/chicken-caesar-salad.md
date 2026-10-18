@@ -8,8 +8,6 @@ source:
 
 # Chicken Caesar Salad
 
-## Ingredients
-
 ## Steps
 
 ## Notes

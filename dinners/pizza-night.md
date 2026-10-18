@@ -8,8 +8,6 @@ source:
 
 # Pizza Night
 
-## Ingredients
-
 ## Steps
 
 ## Notes

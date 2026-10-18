@@ -8,8 +8,6 @@ source:
 
 # Shredded BBQ Chicken
 
-## Ingredients
-
 ## Steps
 
 ## Notes

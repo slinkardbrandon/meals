@@ -8,8 +8,6 @@ source: https://www.thecountrycook.net/crock-pot-french-dip-sandwiches/
 
 # French Dips
 
-## Ingredients
-
 ## Steps
 
 ## Notes

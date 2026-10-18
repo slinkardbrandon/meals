@@ -8,8 +8,6 @@ source:
 
 # Taco Night
 
-## Ingredients
-
 ## Steps
 
 ## Notes

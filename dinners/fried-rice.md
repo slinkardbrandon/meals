@@ -8,8 +8,6 @@ source:
 
 # Fried Rice
 
-## Ingredients
-
 ## Steps
 
 ## Notes

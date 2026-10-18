@@ -8,8 +8,6 @@ source:
 
 # Becky's Potatoes
 
-## Ingredients
-
 ## Steps
 
 ## Notes

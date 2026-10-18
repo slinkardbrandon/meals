@@ -8,8 +8,6 @@ source:
 
 # Chickpea Noodle Soup
 
-## Ingredients
-
 ## Steps
 
 ## Notes

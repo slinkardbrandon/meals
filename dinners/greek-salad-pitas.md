@@ -8,8 +8,6 @@ source:
 
 # Greek Salad Pitas
 
-## Ingredients
-
 ## Steps
 
 ## Notes

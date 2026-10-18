@@ -8,8 +8,6 @@ source:
 
 # Burger Mac
 
-## Ingredients
-
 ## Steps
 
 ## Notes

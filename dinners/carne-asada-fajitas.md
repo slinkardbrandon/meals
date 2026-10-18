@@ -8,8 +8,6 @@ source:
 
 # Carne Asada Fajitas
 
-## Ingredients
-
 ## Steps
 
 ## Notes

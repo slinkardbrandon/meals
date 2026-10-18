@@ -8,8 +8,6 @@ source:
 
 # Burgers and Fries
 
-## Ingredients
-
 ## Steps
 
 ## Notes

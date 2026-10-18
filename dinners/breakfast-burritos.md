@@ -8,8 +8,6 @@ source:
 
 # Breakfast Burritos
 
-## Ingredients
-
 ## Steps
 
 ## Notes

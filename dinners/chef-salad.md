@@ -8,8 +8,6 @@ source:
 
 # Chef Salad
 
-## Ingredients
-
 ## Steps
 
 ## Notes

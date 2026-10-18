@@ -8,8 +8,6 @@ source: https://thevegan8.com/vegan-garlic-alfredo-sauce/
 
 # Vegan Alfredo with Broccoli
 
-## Ingredients
-
 ## Steps
 
 ## Notes
