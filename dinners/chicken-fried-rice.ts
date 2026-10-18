@@ -32,4 +32,7 @@ export default {
     'Add the chicken back and toss for another minute.',
     'Adjust seasoning. Add the scallions and sesame oil, turn off the heat, and serve.',
   ],
+  notes: [
+    'Untested: we usually wing fried rice, and this is a reference recipe we have not made. It serves 2, so scale up for the family.',
+  ],
 } satisfies Recipe
