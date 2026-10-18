@@ -1,5 +1,6 @@
 ---
 name: Flautas
+meal_type: [dinner]
 kid_friendly: false
 protein: chicken
 method: oven

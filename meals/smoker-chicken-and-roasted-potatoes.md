@@ -1,5 +1,6 @@
 ---
 name: Smoker Chicken & Roasted Potatoes
+meal_type: [dinner]
 kid_friendly: false
 protein: chicken
 method: smoker

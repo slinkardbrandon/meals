@@ -1,5 +1,6 @@
 ---
 name: Carne Asada Fajitas
+meal_type: [dinner]
 kid_friendly: true
 protein: beef
 method: stovetop

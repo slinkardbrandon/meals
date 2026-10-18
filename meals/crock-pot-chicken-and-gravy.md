@@ -1,5 +1,6 @@
 ---
 name: Crock Pot Chicken and Gravy
+meal_type: [dinner]
 kid_friendly: true
 protein: chicken
 method: crockpot

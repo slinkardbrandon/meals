@@ -1,5 +1,6 @@
 ---
 name: Burgers and Fries
+meal_type: [dinner]
 kid_friendly: true
 protein: beef
 method: grill

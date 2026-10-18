@@ -1,5 +1,6 @@
 ---
 name: Dual-Sauce Cheesy Spaghetti Bake
+meal_type: [dinner]
 kid_friendly: true
 protein: beef
 method: oven

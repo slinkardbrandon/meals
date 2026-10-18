@@ -1,5 +1,6 @@
 ---
 name: Stroganoff
+meal_type: [dinner]
 kid_friendly: false
 protein: beef
 method: stovetop

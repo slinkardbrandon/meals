@@ -1,5 +1,6 @@
 ---
 name: Spaghetti and Meatballs
+meal_type: [dinner]
 kid_friendly: true
 protein: beef
 method: stovetop

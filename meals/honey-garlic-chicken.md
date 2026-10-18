@@ -1,5 +1,6 @@
 ---
 name: Honey Garlic Chicken
+meal_type: [dinner]
 kid_friendly: true
 protein: chicken
 method: instant-pot
