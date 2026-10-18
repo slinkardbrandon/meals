@@ -12,8 +12,8 @@ export default {
     { item: 'Prego meat sauce', qty: 1, unit: 'jar' },
     { item: 'shredded cheddar', note: 'for topping' },
     { item: 'shredded mozzarella', note: 'for topping' },
-    { item: 'cream cheese', note: 'optional, if we have it' },
-    { item: 'yellow onion', note: 'optional' },
+    { item: 'cream cheese', optional: true, note: 'if we have it' },
+    { item: 'yellow onion', optional: true },
   ],
   steps: [
     'Preheat the oven to 350°F and start the water boiling.',

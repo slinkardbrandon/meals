@@ -12,7 +12,7 @@ export default {
     { item: 'salsa verde', qty: 2, unit: 'cup' },
     { item: 'salt', qty: 1, unit: 'tsp', note: 'kosher' },
     { item: 'cumin', qty: 1, unit: 'tsp' },
-    { item: 'sour cream', note: 'optional, for a creamier texture' },
+    { item: 'sour cream', optional: true, note: 'for a creamier texture' },
     { item: 'flour tortilla', qty: 1, unit: 'pkg' },
   ],
   steps: [

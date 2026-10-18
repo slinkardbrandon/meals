@@ -15,7 +15,7 @@ export default {
     { item: 'cucumber' },
     { item: 'salt' },
     { item: 'black pepper' },
-    { item: 'apple', note: 'optional' },
+    { item: 'apple', optional: true },
     { item: 'mayonnaise', qty: 1, unit: 'cup', note: 'ranch' },
     { item: 'plain yogurt', qty: 1, unit: 'cup', note: 'ranch' },
     { item: 'Italian seasoning', note: 'ranch, to taste' },

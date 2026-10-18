@@ -10,7 +10,7 @@ export default {
     { item: 'chicken breast', qty: 4, note: 'boneless, skinless; 3-4' },
     { item: 'cream of chicken soup', qty: 1, unit: 'can', note: '10.5 oz, unsalted' },
     { item: 'chicken gravy mix', qty: 2, unit: 'pkg', note: '0.87 oz envelopes' },
-    { item: 'chicken broth', qty: 0.5, unit: 'cup', note: 'optional; or water' },
+    { item: 'chicken broth', qty: 0.5, unit: 'cup' },
     { item: 'salt', note: 'to season' },
     { item: 'black pepper', note: 'to season' },
     { item: 'long grain rice', note: 'steamed, for serving' },
