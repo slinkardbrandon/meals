@@ -18,6 +18,7 @@ export const ingredients = {
   'tomato sauce': { aisle: 'pantry', aliases: ['canned tomato sauce'] },
   'Italian seasoning': { aisle: 'spices', staple: true },
   'shredded cheddar': { aisle: 'dairy', aliases: ['cheddar', 'cheddar cheese'] },
+  'shredded mozzarella': { aisle: 'dairy', aliases: ['mozzarella', 'mozzarella cheese'] },
   'Classico Alfredo': { aisle: 'pantry' },
   'Prego meat sauce': { aisle: 'pantry' },
   bread: { aisle: 'bakery' },
