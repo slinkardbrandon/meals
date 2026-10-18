@@ -15,7 +15,7 @@ export default {
     { item: 'raw cashews', qty: 0.5, unit: 'cup', note: 'heaping; soak overnight without a high-powered blender' },
     { item: 'lemon juice', qty: 0.5, unit: 'tbsp', note: '1/2-1 tbsp, start low' },
     { item: 'nutritional yeast', qty: 2, unit: 'tbsp' },
-    { item: 'pasta' },
+    { item: 'thin spaghetti', qty: 1, unit: 'box' },
     { item: 'broccoli' },
   ],
   steps: [
@@ -23,9 +23,9 @@ export default {
     'Add the garlic and cook a couple of minutes more, until all the broth is gone.',
     'Blend the onion and garlic with 1/2 cup more broth, the salt, pepper, cashews, 1/2 tbsp lemon juice, and nutritional yeast until very smooth.',
     'Thin with more broth if needed. Taste and adjust salt, pepper, and lemon.',
-    'Cook the pasta in well-salted water and the broccoli alongside. Toss with the sauce.',
+    'Cook the spaghetti in well-salted water and the broccoli alongside. Toss with the sauce.',
   ],
   notes: [
-    'Source makes about 2 cups of sauce and leaves the pasta and veggies open; broccoli is our pick.',
+    'Source makes about 2 cups of sauce and leaves the pasta and veggies open; thin spaghetti and broccoli are our picks.',
   ],
 } satisfies Recipe

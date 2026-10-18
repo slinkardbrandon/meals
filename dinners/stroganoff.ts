@@ -21,6 +21,7 @@ export default {
     { item: 'A1 sauce', qty: 2, unit: 'tbsp', note: 'almost double the source\'s 1 tbsp Worcestershire' },
     { item: 'salt', qty: 0.5, unit: 'tsp' },
     { item: 'black pepper', qty: 0.5, unit: 'tsp' },
+    { item: 'egg noodles', note: 'for serving' },
   ],
   steps: [
     'Heat the olive oil in a heavy, deep pan over medium-high. Brown the beef, breaking it into small pieces.',
@@ -29,6 +30,7 @@ export default {
     'Stir in the flour until there are no lumps.',
     'Add both broths, the cream, A1, salt, and pepper. Bring to a simmer, then simmer on low about 5 minutes.',
     'Off the heat, stir in the sour cream. Adjust seasoning.',
+    'Serve over egg noodles.',
   ],
   notes: [
     'Swap Worcestershire for A1 and almost double it.',
