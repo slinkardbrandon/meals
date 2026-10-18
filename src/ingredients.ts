@@ -56,6 +56,7 @@ export const ingredients = {
   carrot: { aisle: 'produce' },
   chickpeas: { aisle: 'pantry', aliases: ['garbanzo beans'] },
   'egg noodles': { aisle: 'pantry' },
+  "Annie's Shells & White Cheddar": { aisle: 'pantry', aliases: ["Annie's mac and cheese", "Annie's purple box", 'mac and cheese'] },
   'vegetable stock': { aisle: 'pantry', aliases: ['vegetable broth', 'veg stock'] },
   'dried parsley': { aisle: 'spices', staple: true, aliases: ['parsley'] },
   'dried oregano': { aisle: 'spices', staple: true, aliases: ['oregano'] },
