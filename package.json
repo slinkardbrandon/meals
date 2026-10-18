@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "test": "TZ=America/Chicago bun test"
   },
   "devDependencies": {
     "@types/bun": "latest",

@@ -1,7 +1,8 @@
 import type { ingredients } from './ingredients'
 import type { kids } from './kids'
 
-export type Aisle = 'produce' | 'meat' | 'dairy' | 'deli' | 'bakery' | 'pantry' | 'frozen' | 'spices'
+export const AISLES = ['produce', 'meat', 'dairy', 'deli', 'bakery', 'pantry', 'frozen', 'spices'] as const
+export type Aisle = typeof AISLES[number]
 
 export type IngredientInfo = {
   aisle: Aisle
@@ -13,15 +14,19 @@ export type IngredientInfo = {
 export type IngredientName = keyof typeof ingredients
 
 /** Fractions go in qty: 1/4 cup is `{ qty: 0.25, unit: 'cup' }`. Omit unit for counts. */
-export type Unit =
-  | 'tsp' | 'tbsp' | 'cup' | 'oz' | 'lb'
-  | 'can' | 'jar' | 'bottle' | 'pkg' | 'bag' | 'box'
-  | 'slice' | 'clove' | 'pinch'
+export const UNITS = [
+  'tsp', 'tbsp', 'cup', 'oz', 'lb',
+  'can', 'jar', 'bottle', 'pkg', 'bag', 'box',
+  'slice', 'clove', 'pinch',
+] as const
+export type Unit = typeof UNITS[number]
 
 export type RecipeIngredient = {
   item: IngredientName
   qty?: number
   unit?: Unit
+  /** Left off the grocery list. */
+  optional?: boolean
   /** e.g. "diced", "divided" */
   note?: string
 }

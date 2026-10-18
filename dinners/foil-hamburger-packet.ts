@@ -17,7 +17,7 @@ export default {
     { item: 'salt', note: 'to taste' },
     { item: 'black pepper', note: 'to taste' },
     { item: 'cream of mushroom soup', qty: 1, unit: 'can', note: 'condensed' },
-    { item: 'yellow onion', note: 'optional, cut into strips, not diced' },
+    { item: 'yellow onion', note: 'cut into strips, not diced' },
     { item: 'cooking spray' },
   ],
   steps: [

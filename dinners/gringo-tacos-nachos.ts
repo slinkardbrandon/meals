@@ -21,7 +21,7 @@ export default {
     { item: 'shredded lettuce', qty: 1, unit: 'bag' },
     { item: 'sour cream' },
     { item: 'shredded cheddar' },
-    { item: 'canned corn', qty: 1, unit: 'can', note: 'optional' },
+    { item: 'canned corn', qty: 1, unit: 'can', optional: true },
   ],
   steps: [
     'Brown the beef.',

@@ -20,7 +20,7 @@ export default {
     { item: 'white pepper' },
     { item: 'salt' },
     { item: 'scallion', qty: 2, note: 'chopped' },
-    { item: 'sesame oil', qty: 0.5, unit: 'tsp', note: 'optional, toasted' },
+    { item: 'sesame oil', qty: 0.5, unit: 'tsp', optional: true, note: 'toasted' },
   ],
   steps: [
     'Toss the chicken with salt, white pepper, and soy sauce. Beat the eggs. Dice the onion and carrot; chop the scallions.',
