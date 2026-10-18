@@ -32,6 +32,7 @@ export const ingredients = {
   'deli ham': { aisle: 'deli' },
   'deli turkey': { aisle: 'deli' },
   pepperoni: { aisle: 'deli' },
+  "Thomas' plain bagels": { aisle: 'bakery', aliases: ['bagels', 'plain bagels'] },
   'flank steak': { aisle: 'meat', aliases: ['steak'] },
   'bell pepper': { aisle: 'produce', aliases: ['bell peppers', 'peppers'] },
   'vegetable oil': { aisle: 'pantry', staple: true, aliases: ['oil', 'cooking oil'] },
