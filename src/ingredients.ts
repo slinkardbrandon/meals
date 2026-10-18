@@ -12,7 +12,7 @@ export const ingredients = {
   'cream cheese': { aisle: 'dairy' },
   'panko breadcrumbs': { aisle: 'pantry', aliases: ['panko', 'breadcrumbs'] },
   peas: { aisle: 'frozen', aliases: ['green peas', 'frozen peas'] },
-  'beef stock concentrate': { aisle: 'pantry', aliases: ['beef bouillon', 'beef base'] },
+  'Better Than Bouillon beef': { aisle: 'pantry', aliases: ['beef stock concentrate', 'beef bouillon', 'beef base'] },
   nutmeg: { aisle: 'spices', staple: true, aliases: ['ground nutmeg'] },
   'thin spaghetti': { aisle: 'pantry' },
   'tomato sauce': { aisle: 'pantry', aliases: ['canned tomato sauce'] },

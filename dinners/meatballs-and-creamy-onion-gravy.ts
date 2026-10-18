@@ -17,7 +17,7 @@ export default {
     { item: 'sour cream', qty: 6, unit: 'tbsp', note: 'divided' },
     { item: 'cream cheese', qty: 4, unit: 'tbsp' },
     { item: 'panko breadcrumbs', qty: 0.5, unit: 'cup' },
-    { item: 'beef stock concentrate', qty: 4, note: 'packets' },
+    { item: 'Better Than Bouillon beef', qty: 4, unit: 'tsp' },
     { item: 'all-purpose flour', qty: 2, unit: 'tbsp' },
     { item: 'nutmeg', qty: 1, unit: 'tsp', note: 'divided' },
     { item: 'garlic powder', qty: 2, unit: 'tsp' },
@@ -34,10 +34,11 @@ export default {
     'On the other side of the sheet, toss the carrots with a large drizzle of oil, salt, and pepper. Roast on the top rack until browned and cooked through, 14-16 minutes.',
     'Meanwhile, melt 1 tbsp butter in a large pan over medium-high heat. Add the peas and cook undisturbed until lightly browned, 2-3 minutes. Stir and cook, stirring occasionally, until lightly charred, 1-2 minutes more. Transfer to a plate and wipe out the pan.',
     'Heat a drizzle of oil in the same pan over medium heat. Add the sliced onion and a pinch of salt; cook, stirring occasionally, until browned and softened, 3-6 minutes. Add 2 tbsp butter and cook, whisking, until melted. Sprinkle the flour over the onion and cook, whisking constantly, until lightly browned, 1-2 minutes.',
-    'Slowly whisk 1 1/2 cups water into the pan. Add the stock concentrates, cream cheese, and 1/2 tsp nutmeg; whisk until the cream cheese melts and the gravy thickens, 3-5 minutes. Remove from heat and whisk in the remaining sour cream. Season with salt and pepper. If the gravy is too thick, stir in a few splashes of reserved potato liquid.',
+    'Slowly whisk 1 1/2 cups water into the pan. Add the Better Than Bouillon, cream cheese, and 1/2 tsp nutmeg; whisk until the cream cheese melts and the gravy thickens, 3-5 minutes. Remove from heat and whisk in the remaining sour cream. Season with salt and pepper. If the gravy is too thick, stir in a few splashes of reserved potato liquid.',
     'Add the meatballs to the pan with the gravy and toss to coat. Divide the mashed potatoes, carrots, meatballs, and gravy between bowls. Top the meatballs with the peas.',
   ],
   notes: [
+    'Card uses 4 HelloFresh beef stock concentrate packets; we use Better Than Bouillon at about 1 tsp per packet.',
     'The card only scales the onion prep for 2 servings ("grate one half"); for 4 we grate half the onions.',
   ],
 } satisfies Recipe
