@@ -22,4 +22,8 @@ export const ingredients = {
   salt: { aisle: 'spices', staple: true },
   'black pepper': { aisle: 'spices', staple: true, aliases: ['pepper'] },
   'garlic powder': { aisle: 'spices', staple: true },
+  'breakfast sausage': { aisle: 'meat', aliases: ['pork sausage', 'sausage'] },
+  'all-purpose flour': { aisle: 'pantry', staple: true, aliases: ['flour'] },
+  '2% milk': { aisle: 'dairy', aliases: ['milk'] },
+  'refrigerated biscuits': { aisle: 'dairy', aliases: ['canned biscuits', 'biscuit dough'] },
 } as const satisfies Record<string, IngredientInfo>
