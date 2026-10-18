@@ -69,6 +69,10 @@ const commands = {
     const { path, plan } = readPlan(week, ctx)
     const recipes = await loadDinners()
     if (values.id !== undefined) assertKnown(values.id, recipes)
+    const all = Object.values(recipes)
+    if (values.method && !all.some(r => r.method === values.method)) throw new Error(`No dinner uses method "${values.method}"`)
+    if (values.protein && !all.some(r => r.protein === values.protein)) throw new Error(`No dinner has protein "${values.protein}"`)
+    // Checked against real recipes above.
     const filter: Filter = { method: values.method as Method | undefined, protein: values.protein as Protein | undefined }
     const result = add(plan, { recipes, history: readHistory(week, ctx.root), id: values.id, ...filter })
     if (result.shortfall) ctx.err(`warning: no eligible dinner matches for ${week}`)

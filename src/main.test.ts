@@ -89,6 +89,14 @@ describe('cli', () => {
     expect(read('plans/2026/W43.md')).toBe(before)
   })
 
+  test('add rejects unknown method and protein values', async () => {
+    await cli('plan', '--week', '2026-W43')
+    const before = read('plans/2026/W43.md')
+    expect(await cli('add', '--week', '2026-W43', '--method', 'smoekr')).toBe(1)
+    expect(await cli('add', '--week', '2026-W43', '--protein', 'tofu')).toBe(1)
+    expect(read('plans/2026/W43.md')).toBe(before)
+  })
+
   test('drop/add/groceries with no plan file exit 1', async () => {
     expect(await cli('drop', 'stroganoff', '--week', '2026-W43')).toBe(1)
     expect(await cli('add', '--week', '2026-W43')).toBe(1)
