@@ -27,7 +27,7 @@ export type RecipeIngredient = {
 }
 
 export type Protein = 'beef' | 'chicken' | 'turkey' | 'pork' | 'egg' | 'beans' | 'chickpea' | 'mixed' | 'none'
-export type Method = 'stovetop' | 'oven' | 'crockpot' | 'instant-pot' | 'grill' | 'smoker' | 'no-cook'
+export type Method = 'stovetop' | 'oven' | 'crockpot' | 'instant-pot' | 'grill' | 'smoker' | 'air-fryer' | 'no-cook'
 
 export type Recipe = {
   title: string
