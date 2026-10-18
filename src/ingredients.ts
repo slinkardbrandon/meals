@@ -50,7 +50,11 @@ export const ingredients = {
   'vanilla extract': { aisle: 'spices', staple: true, aliases: ['vanilla'] },
   'long grain rice': { aisle: 'pantry', aliases: ['rice', 'white rice'] },
   'rice vinegar': { aisle: 'pantry' },
-  'shredded carrots': { aisle: 'produce' },
+  'matchstick carrots': { aisle: 'produce', aliases: ['shredded carrots', 'julienned carrots'] },
   'mini cucumber': { aisle: 'produce', aliases: ['mini cucumbers', 'Persian cucumber'] },
-  "Sweet Baby Ray's teriyaki sauce": { aisle: 'pantry', aliases: ['teriyaki sauce', 'teriyaki'] },
+  'soy sauce': { aisle: 'pantry', staple: true },
+  honey: { aisle: 'pantry', staple: true },
+  'fresh ginger': { aisle: 'produce', aliases: ['ginger', 'ginger root'] },
+  scallion: { aisle: 'produce', aliases: ['scallions', 'green onion', 'green onions'] },
+  'red pepper flakes': { aisle: 'spices', staple: true, aliases: ['crushed red pepper'] },
 } as const satisfies Record<string, IngredientInfo>
