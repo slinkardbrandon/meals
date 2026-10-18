@@ -1,0 +1,35 @@
+import type { Recipe } from '../src/types'
+
+export default {
+  title: 'Chicken Fried Rice',
+  kidFriendly: true,
+  protein: 'chicken',
+  method: 'stovetop',
+  source: 'https://spoonsofflavor.com/hibachi-style-fried-rice/',
+  servings: 2,
+  ingredients: [
+    { item: 'long grain rice', qty: 1, unit: 'cup', note: 'cooked, day old' },
+    { item: 'chicken breast', qty: 7, unit: 'oz', note: 'bite-sized cubes' },
+    { item: 'egg', qty: 2, note: 'lightly beaten' },
+    { item: 'yellow onion', qty: 0.5, note: 'diced' },
+    { item: 'minced garlic', qty: 2.5, unit: 'clove', note: '2-3 cloves' },
+    { item: 'carrot', qty: 0.5, note: 'small dice' },
+    { item: 'olive oil', qty: 1.5, unit: 'tbsp' },
+    { item: 'butter', qty: 1, unit: 'tbsp' },
+    { item: 'soy sauce', qty: 1, unit: 'tbsp' },
+    { item: 'white pepper' },
+    { item: 'salt' },
+    { item: 'scallion', qty: 2, note: 'chopped' },
+    { item: 'sesame oil', qty: 0.5, unit: 'tsp', note: 'optional, toasted' },
+  ],
+  steps: [
+    'Toss the chicken with salt, white pepper, and soy sauce. Beat the eggs. Dice the onion and carrot; chop the scallions.',
+    'Heat a wok or large skillet over medium-high. Cook the chicken in the olive oil until golden and cooked through. Set aside.',
+    'In the same pan, melt the butter. Sauté the garlic a few seconds, then the onion and carrot for about a minute.',
+    'Add the rice and stir fry over high heat for 1-2 minutes. Season with a little salt and white pepper.',
+    'Push the rice aside, scramble the eggs until just set, then mix them in.',
+    'Drizzle soy sauce around the pan edges to sizzle, then toss to coat.',
+    'Add the chicken back and toss for another minute.',
+    'Adjust seasoning. Add the scallions and sesame oil, turn off the heat, and serve.',
+  ],
+} satisfies Recipe
