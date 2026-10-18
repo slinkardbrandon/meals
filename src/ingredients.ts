@@ -41,6 +41,7 @@ export const ingredients = {
   SunButter: { aisle: 'pantry' },
   jelly: { aisle: 'pantry' },
   'chicken breast': { aisle: 'meat', aliases: ['chicken breasts', 'boneless skinless chicken breast'] },
+  'salsa verde': { aisle: 'pantry', aliases: ['green salsa', 'tomatillo salsa'] },
   'cream of chicken soup': { aisle: 'pantry', aliases: ['condensed cream of chicken soup'] },
   'chicken gravy mix': { aisle: 'pantry', aliases: ['chicken gravy packet'] },
   'chicken broth': { aisle: 'pantry', aliases: ['chicken stock'] },
