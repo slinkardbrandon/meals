@@ -87,4 +87,6 @@ export const ingredients = {
   'Fortune yakisoba noodles': { aisle: 'produce', aliases: ['yakisoba noodles', 'precooked noodles'] },
   'Meat Church Holy Gospel': { aisle: 'spices', staple: true, aliases: ['beef seasoning', 'Holy Gospel'] },
   'red pepper flakes': { aisle: 'spices', staple: true, aliases: ['crushed red pepper'] },
+  'tater tots': { aisle: 'frozen', aliases: ['Ore-Ida tater tots', 'tots'] },
+  'flour tortilla': { aisle: 'bakery', aliases: ['tortillas', 'flour tortillas', 'burrito tortillas'] },
 } as const satisfies Record<string, IngredientInfo>
