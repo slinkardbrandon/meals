@@ -15,6 +15,8 @@ export const ingredients = {
   'Better Than Bouillon beef': { aisle: 'pantry', aliases: ['beef stock concentrate', 'beef bouillon', 'beef base'] },
   nutmeg: { aisle: 'spices', staple: true, aliases: ['ground nutmeg'] },
   'thin spaghetti': { aisle: 'pantry' },
+  pasta: { aisle: 'pantry', aliases: ['cavatappi', 'rotini', 'elbows', 'elbow macaroni', 'farfalle', 'bowtie pasta'] },
+  'Good & Gather beef meatballs': { aisle: 'frozen', aliases: ['frozen meatballs', 'meatballs', 'beef meatballs'] },
   'tomato sauce': { aisle: 'pantry', aliases: ['canned tomato sauce'] },
   'Italian seasoning': { aisle: 'spices', staple: true },
   'shredded cheddar': { aisle: 'dairy', aliases: ['cheddar', 'cheddar cheese'] },
