@@ -3,7 +3,6 @@ import type { IngredientInfo } from './types'
 // Canonical names: generic, lowercase, singular. Brands only when they matter to us.
 export const ingredients = {
   'ground beef': { aisle: 'meat', aliases: ['hamburger', 'ground chuck'] },
-  'ground turkey': { aisle: 'meat' },
   'onion soup mix': { aisle: 'pantry', aliases: ['dry onion soup mix', 'Lipton onion soup mix'] },
   'cream of mushroom soup': { aisle: 'pantry', aliases: ['condensed mushroom soup', 'condensed cream of mushroom soup'] },
   potato: { aisle: 'produce', aliases: ['potatoes'] },

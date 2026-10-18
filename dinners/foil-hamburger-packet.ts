@@ -8,7 +8,7 @@ export default {
   source: 'Family recipe card',
   servings: 4,
   ingredients: [
-    { item: 'ground beef', qty: 1, unit: 'lb', note: 'or ground turkey' },
+    { item: 'ground beef', qty: 1, unit: 'lb' },
     { item: 'onion soup mix', qty: 1, unit: 'pkg' },
     { item: 'potato', qty: 4, note: 'small, peeled and thinly sliced' },
     { item: 'carrot', qty: 2, unit: 'cup', note: 'thinly sliced' },
@@ -22,7 +22,7 @@ export default {
   ],
   steps: [
     'Preheat the oven to 375°F.',
-    'Combine the beef and onion soup mix. Make 4 patties. If using super-lean ground turkey, add a little olive oil.',
+    'Combine the beef and onion soup mix. Make 4 patties.',
     'Combine the remaining ingredients except the mushroom soup.',
     'Cut four 12" x 18" sheets of foil and spray them.',
     'On each foil sheet, place 1/4 of the veggie mixture, top with a patty, and add 2 tbsp of the mushroom soup.',
