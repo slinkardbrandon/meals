@@ -29,4 +29,7 @@ The grocery list merges ingredients across meals by `item`, so every item must e
 
 ## Plans
 
-- `plans/YYYY-Www.md` files are history. Never edit past weeks; the rotation logic depends on them.
+- `plans/YYYY/Www.md` files are history (`YYYY` is the ISO week-year). Never edit past weeks; the rotation logic depends on them.
+- Change plans through `bun main.ts` (`plan`, `drop`, `add`, `groceries`), not by hand. The body is regenerated from frontmatter.
+- Mark ingredients the grocery list should skip with `optional: true`, not a note.
+- The weekly routine follows `routine/weekly-plan.md`; keep it in sync with the CLI.

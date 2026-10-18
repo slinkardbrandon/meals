@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "types": ["bun"]
   },
-  "include": ["src", "dinners", "lunch-items"]
+  "include": ["main.ts", "src", "dinners", "lunch-items"]
 }
