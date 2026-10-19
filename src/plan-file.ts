@@ -16,22 +16,25 @@ export type History = { week: string; dinners: string[] }[]
 
 const list = (key: string, value: string | undefined) => {
   const match = /^\[(.*)\]$/.exec(value ?? '')
-  if (!match) throw new Error(`Plan frontmatter "${key}" must be a [list]`)
+  if (!match) throw new Error(`Plan metadata "${key}" must be a [list]`)
   return match[1]!.split(',').map(s => s.trim()).filter(Boolean)
 }
 
-/** Parses the frontmatter. The body is generated, so it's ignored. */
+/**
+ * Parses the metadata block. The body is generated, so it's ignored.
+ * Metadata lives in an HTML comment so GitHub hides it; `---` frontmatter is still read.
+ */
 export const parsePlan = (text: string): Plan => {
-  const match = /^---\n([\s\S]*?)\n---\n/.exec(text)
-  if (!match) throw new Error('Plan file has no frontmatter')
+  const match = /^(?:<!--\n([\s\S]*?)\n-->|---\n([\s\S]*?)\n---)\n/.exec(text)
+  if (!match) throw new Error('Plan file has no metadata block')
   const fields = new Map<string, string>()
-  for (const line of match[1]!.split('\n')) {
+  for (const line of (match[1] ?? match[2])!.split('\n')) {
     const i = line.indexOf(':')
     if (i > 0) fields.set(line.slice(0, i).trim(), line.slice(i + 1).trim())
   }
   const scalar = (key: string) => {
     const value = fields.get(key)
-    if (!value) throw new Error(`Plan frontmatter is missing "${key}"`)
+    if (!value) throw new Error(`Plan metadata is missing "${key}"`)
     return value
   }
   return {
@@ -48,13 +51,13 @@ export const serializePlan = (plan: Plan, recipes: Record<string, Recipe>) => {
   const groceries = mergeGroceries(picked).map(({ aisle, lines }) =>
     [`### ${aisle}`, ...lines.map(line => `- ${line}`)].join('\n'))
   return [
-    '---',
+    '<!--',
     `week: ${plan.week}`,
     `starts: ${plan.starts}`,
     `seed: ${plan.seed}`,
     `dinners: [${plan.dinners.join(', ')}]`,
     `dropped: [${plan.dropped.join(', ')}]`,
-    '---',
+    '-->',
     '',
     '## Dinners',
     '',

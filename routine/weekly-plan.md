@@ -23,7 +23,7 @@ Prompt for the weekly Claude cloud routine (Saturday 08:00 America/Chicago). Spe
    - If an open PR for `plan/<target>` exists, check out that branch and go to step 4. Do not re-plan or force push.
    - Otherwise run `bun main.ts plan --week <target>`. Commit `Plan dinners <target>` on branch `plan/<target>` and push. Open a draft PR into `main` titled `Dinner plan <target>` with the dinner list in the body. If `plan` printed a shortfall warning, include it in the body.
 4. End the turn with: "Good to go, or any swaps / fewer nights?"
-5. For each swap request, run `bun main.ts drop <id> --week <target>` and/or `bun main.ts add [--method M] [--protein P] [--id id] --week <target>`. Commit `Swap <target>: drop <a>, add <b>` (or `Drop <a>` / `Add <b>`), push, and reply with the new dinner list. Never hand-edit frontmatter when a command covers it. Fewer nights means `drop` with no `add`.
+5. For each swap request, run `bun main.ts drop <id> --week <target>` and/or `bun main.ts add [--method M] [--protein P] [--id id] --week <target>`. Commit `Swap <target>: drop <a>, add <b>` (or `Drop <a>` / `Add <b>`), push, and reply with the new dinner list. Never hand-edit the metadata block when a command covers it. Fewer nights means `drop` with no `add`.
 6. On "go", run `bun run check && bun run test`.
    - Under `DRY_RUN=1`: after checks pass, report the PR's state and mergeable state. Close the PR and delete `plan/<target>` with `git push origin --delete`. Stop.
    - Otherwise: mark the PR ready for review and update its branch from `main`. Enable auto-merge with squash. If the integration can't enable auto-merge, wait for the `typecheck` check to pass, then squash-merge. Report the PR's final state. If it is behind `main`, update the branch again.
