@@ -29,7 +29,7 @@ describe('cli', () => {
     expect(await cli('plan', '--week', '2026-W43')).toBe(1)
     expect(read(path)).toBe('hand edited')
     expect(await cli('plan', '--week', '2026-W43', '--force')).toBe(0)
-    expect(read(path)).toStartWith('---\nweek: 2026-W43\n')
+    expect(read(path)).toStartWith('<!--\nweek: 2026-W43\n')
   })
 
   test('delete-and-rerun plan produces identical bytes', async () => {

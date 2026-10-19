@@ -20,15 +20,15 @@ describe('plan file', () => {
     expect(parsePlan(serializePlan(withDropped, recipes))).toEqual(withDropped)
   })
 
-  test('renders frontmatter, dinners, and groceries', () => {
+  test('renders hidden metadata, dinners, and groceries', () => {
     const plan: Plan = { week: '2026-W43', starts: '2026-10-19', seed: '2026-W43', dinners: ['stroganoff'], dropped: [] }
-    expect(serializePlan(plan, recipes)).toBe(`---
+    expect(serializePlan(plan, recipes)).toBe(`<!--
 week: 2026-W43
 starts: 2026-10-19
 seed: 2026-W43
 dinners: [stroganoff]
 dropped: []
----
+-->
 
 ## Dinners
 
@@ -41,7 +41,12 @@ dropped: []
 `)
   })
 
-  test('rejects a file without frontmatter', () => {
+  test('still reads legacy --- frontmatter', () => {
+    const legacy = '---\nweek: 2026-W43\nstarts: 2026-10-19\nseed: 2026-W43\ndinners: [stroganoff]\ndropped: []\n---\n\n## Dinners\n'
+    expect(parsePlan(legacy)).toEqual({ week: '2026-W43', starts: '2026-10-19', seed: '2026-W43', dinners: ['stroganoff'], dropped: [] })
+  })
+
+  test('rejects a file without a metadata block', () => {
     expect(() => parsePlan('## Dinners\n')).toThrow()
   })
 })

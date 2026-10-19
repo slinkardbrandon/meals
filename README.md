@@ -37,6 +37,6 @@ bun main.ts week [--offset N]                  # print the week id N weeks out (
 - Variety: weight halves per already-picked dinner sharing protein, and per one sharing method.
 - Picks are seeded (default seed is the week id), so reruns are reproducible.
 - Swap is `drop` then `add`. Random `add` skips anything in `dropped`; `add --id` can undo a drop.
-- The plan file's frontmatter is the source of truth; the body is regenerated on every write.
+- The plan file's `<!-- -->` metadata block is the source of truth (hidden on GitHub); the body is regenerated on every write.
 
 A weekly cloud routine runs this and opens a draft PR on `plan/YYYY-Www`. Reply in its session with swaps, then "go" to auto-merge. See `routine/weekly-plan.md`.
