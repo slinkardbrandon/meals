@@ -6,7 +6,7 @@ export default {
   protein: 'chicken',
   method: 'stovetop',
   ingredients: [
-    { item: 'chicken breast', note: 'cooked and shredded' },
+    { item: 'chicken breast', qty: 2, unit: 'lb', note: 'cooked and shredded' },
     { item: 'corn tortilla', qty: 1, unit: 'pkg' },
     { item: 'canola oil', note: 'for frying' },
     { item: 'toothpicks' },
