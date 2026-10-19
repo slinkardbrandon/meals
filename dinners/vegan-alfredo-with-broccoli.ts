@@ -11,7 +11,7 @@ export default {
     { item: 'vegetable stock', qty: 2, unit: 'cup', note: 'low sodium; 1-2 cups, divided' },
     { item: 'salt', qty: 0.5, unit: 'tsp', note: '1/2-3/4 tsp' },
     { item: 'black pepper', qty: 0.25, unit: 'tsp', note: '1/4-1/2 tsp' },
-    { item: 'minced garlic', qty: 4, unit: 'clove', note: 'extra large' },
+    { item: 'minced garlic', qty: 3, unit: 'tsp', note: 'source says 4 extra-large cloves; rounded up from 1/2 tsp per clove' },
     { item: 'raw cashews', qty: 0.5, unit: 'cup', note: 'heaping; soak overnight without a high-powered blender' },
     { item: 'lemon juice', qty: 0.5, unit: 'tbsp', note: '1/2-1 tbsp, start low' },
     { item: 'nutritional yeast', qty: 2, unit: 'tbsp' },

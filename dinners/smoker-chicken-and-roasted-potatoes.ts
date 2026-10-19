@@ -7,7 +7,7 @@ export default {
   method: 'smoker',
   source: 'https://www.dinneratthezoo.com/roasted-red-potatoes/',
   ingredients: [
-    { item: 'chicken breast', note: 'usually Smart Chicken' },
+    { item: 'chicken breast', qty: 2, unit: 'lb', note: 'usually Smart Chicken' },
     { item: 'Traeger Pork & Poultry Rub' },
     { item: 'baby red potatoes', qty: 1.5, unit: 'lb', note: 'halved' },
     { item: 'olive oil', qty: 0.25, unit: 'cup' },

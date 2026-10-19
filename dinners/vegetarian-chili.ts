@@ -14,7 +14,7 @@ export default {
     { item: 'carrot', qty: 2, note: 'chopped' },
     { item: 'celery', qty: 2, note: 'ribs, chopped' },
     { item: 'salt', qty: 0.5, unit: 'tsp', note: 'divided' },
-    { item: 'minced garlic', qty: 4, unit: 'clove' },
+    { item: 'minced garlic', qty: 2, unit: 'tsp', note: 'source says 4 cloves; 1/2 tsp per clove' },
     { item: 'chili powder', qty: 2, unit: 'tbsp' },
     { item: 'cumin', qty: 2, unit: 'tsp' },
     { item: 'smoked paprika', qty: 1.5, unit: 'tsp' },

@@ -8,8 +8,8 @@ export default {
   ingredients: [
     { item: 'romaine' },
     { item: 'baby spinach' },
-    { item: 'egg', note: 'hard boiled' },
-    { item: 'deli turkey', note: 'or deli ham' },
+    { item: 'egg', qty: 6, note: 'hard boiled' },
+    { item: 'deli turkey', qty: 1, unit: 'lb', note: 'or deli ham' },
     { item: 'shredded cheddar' },
     { item: 'matchstick carrots' },
     { item: 'cucumber' },
