@@ -10,7 +10,7 @@ export default {
   ingredients: [
     { item: 'yellow onion', qty: 1, note: 'small, diced' },
     { item: 'olive oil', qty: 1, unit: 'tbsp' },
-    { item: 'minced garlic', qty: 2, unit: 'clove' },
+    { item: 'minced garlic', qty: 1, unit: 'tsp', note: 'source says 2 cloves; 1/2 tsp per clove' },
     { item: 'chicken broth', qty: 2, unit: 'can', note: '14.5 oz, low sodium' },
     { item: 'diced green chiles', qty: 1, unit: 'can', note: '7 oz' },
     { item: 'cumin', qty: 1.5, unit: 'tsp' },

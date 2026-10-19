@@ -7,7 +7,7 @@ export default {
   method: 'stovetop',
   ingredients: [
     { item: 'tater tots', qty: 1, unit: 'bag' },
-    { item: 'egg', qty: 8 },
+    { item: 'egg', qty: 12 },
     { item: 'Jimmy Dean sausage', qty: 1, unit: 'lb', note: 'mild or regular' },
     { item: 'salt' },
     { item: 'black pepper' },
@@ -21,6 +21,6 @@ export default {
     'Serve the egg and sausage mix on tortillas with the tater tots.',
   ],
   notes: [
-    'Cooked by vibes, no source recipe. 6-8 eggs depending on hunger.',
+    'Cooked by vibes, no source recipe. About a dozen eggs; 1 lb sausage is plenty.',
   ],
 } satisfies Recipe
