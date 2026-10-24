@@ -1,6 +1,6 @@
 # Weekly dinner plan routine
 
-Prompt for the weekly Claude cloud routine (Saturday 08:00 America/Chicago). Spec: `docs/specs/2026-10-18-weekly-dinner-automation.md`.
+Prompt for the weekly Claude cloud routine (Saturdays at 16:00 UTC: 10:00 CST, 11:00 CDT). Spec: `docs/specs/2026-10-18-weekly-dinner-automation.md`.
 
 ## Inputs
 
