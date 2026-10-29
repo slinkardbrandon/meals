@@ -25,7 +25,7 @@ export type RecipeIngredient = {
   item: IngredientName
   qty?: number
   unit?: Unit
-  /** Left off the grocery list. */
+  /** Flagged "(optional)" on the grocery list unless another dinner needs it. */
   optional?: boolean
   /** e.g. "diced", "divided" */
   note?: string
