@@ -18,6 +18,8 @@ export default {
     { item: 'Tabasco', note: 'at least 4 rounds of 3-5 shakes' },
     { item: 'kidney beans', qty: 2, unit: 'can' },
     { item: 'diced tomatoes', qty: 1, unit: 'can', note: 'with juice' },
+    { item: 'Fritos Scoops', qty: 1, unit: 'bag', note: 'for scooping' },
+    { item: 'sour cream', note: 'for topping' },
   ],
   steps: [
     'Brown the beef with the onion and garlic in a large pot. Drain.',
@@ -25,8 +27,10 @@ export default {
     'Add the kidney beans and the diced tomatoes with their juice.',
     'Add Tabasco in rounds of 3-5 shakes, at least 4 rounds, tasting as you go.',
     'Simmer until heated through and thickened.',
+    'Serve topped with sour cream, with Fritos Scoops for scooping.',
   ],
   notes: [
     'Card is an ingredient list only; the steps are ours.',
+    'Fritos Scoops and sour cream are our additions; not on the card.',
   ],
 } satisfies Recipe
