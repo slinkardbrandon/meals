@@ -83,7 +83,7 @@ export const ingredients = {
   'Chef Merito carne asada seasoning': { aisle: 'spices', staple: true, aliases: ['carne asada seasoning', 'Chef Merito'] },
   "Old El Paso hard taco shells": { aisle: 'pantry', aliases: ['hard shells', 'taco shells', 'hard taco shells'] },
   Doritos: { aisle: 'pantry', aliases: ['tortilla chips', 'chips'] },
-  Fritos: { aisle: 'pantry', aliases: ['corn chips', 'Fritos corn chips'] },
+  'Fritos Scoops': { aisle: 'pantry', aliases: ['Fritos', 'corn chip scoops'] },
   'shredded lettuce': { aisle: 'produce', aliases: ['lettuce', 'iceberg lettuce'] },
   'canned corn': { aisle: 'pantry', aliases: ['corn', 'whole kernel corn'] },
   'frozen corn': { aisle: 'frozen', aliases: ['frozen sweet corn'] },
