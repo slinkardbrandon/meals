@@ -58,15 +58,21 @@ describe('mergeGroceries', () => {
     })).toEqual(['heavy cream: 0.3 cup'])
   })
 
-  test('skips staples and optional items', () => {
+  test('skips staples', () => {
+    expect(lines({ a: r({ item: 'olive oil', qty: 1, unit: 'tbsp' }, { item: 'apple' }) })).toEqual(['apple'])
+  })
+
+  test('flags optional items instead of skipping them', () => {
     expect(lines({
-      a: r(
-        { item: 'olive oil', qty: 1, unit: 'tbsp' },
-        { item: 'apple', optional: true },
-        { item: 'sour cream', qty: 1, unit: 'cup' },
-        { item: 'sour cream', optional: true, note: 'for topping' },
-      ),
-    })).toEqual(['sour cream: 1 cup'])
+      a: r({ item: 'apple', optional: true }, { item: 'heavy cream', qty: 1, unit: 'cup', optional: true, note: 'for topping' }),
+    })).toEqual(['apple (optional)', 'heavy cream: 1 cup (optional, for topping)'])
+  })
+
+  test('an item required by any dinner is not flagged optional', () => {
+    expect(lines({
+      a: r({ item: 'sour cream', qty: 1, unit: 'cup' }),
+      b: r({ item: 'sour cream', optional: true, note: 'for topping' }),
+    })).toEqual(['sour cream: 1 cup (for topping)'])
   })
 
   test('groups by aisle in AISLES order, omits empty aisles, sorts items by code unit', () => {
