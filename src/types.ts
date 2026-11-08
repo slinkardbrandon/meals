@@ -4,8 +4,27 @@ import type { kids } from './kids'
 export const AISLES = ['produce', 'meat', 'dairy', 'deli', 'bakery', 'pantry', 'frozen', 'spices'] as const
 export type Aisle = typeof AISLES[number]
 
+export const STORES = ['hyvee', 'target'] as const
+export type Store = typeof STORES[number]
+
+export const STORE_NAMES: Record<Store, string> = { hyvee: 'Hy-Vee', target: 'Target' }
+
+/** Where each aisle is bought unless an ingredient sets `store`. */
+export const AISLE_STORE: Record<Aisle, Store> = {
+  produce: 'hyvee',
+  meat: 'hyvee',
+  deli: 'hyvee',
+  dairy: 'target',
+  bakery: 'target',
+  pantry: 'target',
+  frozen: 'target',
+  spices: 'target',
+}
+
 export type IngredientInfo = {
   aisle: Aisle
+  /** Overrides the aisle default in `AISLE_STORE`. */
+  store?: Store
   aliases?: readonly string[]
   /** Always on hand; left off the grocery list unless asked. */
   staple?: boolean

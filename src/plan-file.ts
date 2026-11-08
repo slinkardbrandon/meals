@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { mergeGroceries } from './groceries'
-import type { Recipe } from './types'
+import { STORE_NAMES, type Recipe } from './types'
 import { addWeeks, planPath } from './week'
 
 export type Plan = {
@@ -48,8 +48,12 @@ export const parsePlan = (text: string): Plan => {
 
 export const serializePlan = (plan: Plan, recipes: Record<string, Recipe>) => {
   const picked = Object.fromEntries(plan.dinners.map(id => [id, recipes[id]!]))
-  const groceries = mergeGroceries(picked).map(({ aisle, lines }) =>
-    [`### ${aisle}`, ...lines.map(line => `- ${line}`)].join('\n'))
+  const groceries = mergeGroceries(picked).map(({ store, aisles }) =>
+    [
+      `### ${STORE_NAMES[store]}`,
+      '',
+      aisles.map(({ aisle, lines }) => [`#### ${aisle}`, ...lines.map(line => `- ${line}`)].join('\n')).join('\n\n'),
+    ].join('\n'))
   return [
     '<!--',
     `week: ${plan.week}`,

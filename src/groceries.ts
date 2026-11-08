@@ -1,7 +1,8 @@
 import { ingredients } from './ingredients'
-import { AISLES, UNITS, type Aisle, type IngredientInfo, type Recipe, type Unit } from './types'
+import { AISLES, AISLE_STORE, STORES, UNITS, type Aisle, type IngredientInfo, type Recipe, type Store, type Unit } from './types'
 
 export type AisleGroup = { aisle: Aisle; lines: string[] }
+export type StoreGroup = { store: Store; aisles: AisleGroup[] }
 
 /** Rounds to 2 decimals and drops trailing zeros. */
 export const formatQty = (n: number) => String(Math.round(n * 100) / 100)
@@ -20,14 +21,14 @@ const formatLine = (item: string, { totals, notes, optional }: Tally) => {
 }
 
 /**
- * Merges ingredients across dinners into aisle-grouped grocery lines.
+ * Merges ingredients across dinners into grocery lines grouped by store, then aisle.
  * Skips staples. Flags an item optional only when every dinner marks it optional.
  * Mixed units are listed side by side, never converted.
  */
 export const mergeGroceries = (
   recipes: Record<string, Recipe>,
   registry: Record<string, IngredientInfo> = ingredients,
-): AisleGroup[] => {
+): StoreGroup[] => {
   const tallies = new Map<string, Tally>()
   for (const id of Object.keys(recipes).sort()) {
     for (const { item, qty, unit, note, optional } of recipes[id]!.ingredients) {
@@ -40,8 +41,17 @@ export const mergeGroceries = (
     }
   }
 
-  return AISLES.flatMap(aisle => {
-    const items = [...tallies.keys()].filter(item => registry[item]?.aisle === aisle).sort()
-    return items.length ? [{ aisle, lines: items.map(item => formatLine(item, tallies.get(item)!)) }] : []
+  const storeOf = (item: string) => {
+    const info = registry[item]
+    return info && (info.store ?? AISLE_STORE[info.aisle])
+  }
+  return STORES.flatMap(store => {
+    const aisles = AISLES.flatMap(aisle => {
+      const items = [...tallies.keys()]
+        .filter(item => registry[item]?.aisle === aisle && storeOf(item) === store)
+        .sort()
+      return items.length ? [{ aisle, lines: items.map(item => formatLine(item, tallies.get(item)!)) }] : []
+    })
+    return aisles.length ? [{ store, aisles }] : []
   })
 }

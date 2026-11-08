@@ -27,6 +27,7 @@ The grocery list merges ingredients across meals by `item`, so every item must e
 - New entries: generic, lowercase, singular (`yellow onion`, `garlic`). Keep a brand only when it matters to us (`Prego meat sauce`).
 - Fractions go in `qty`, not `unit`: 1/4 cup is `{ qty: 0.25, unit: 'cup' }`. Add to `Unit` only for a genuinely new unit.
 - List pantry staples too, and mark them `staple: true` in the registry.
+- Store comes from `AISLE_STORE` in `src/types.ts`. Set `store` on an entry only for exceptions.
 
 ## Lunch items
 

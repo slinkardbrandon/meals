@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'bun:test'
 import { formatQty, mergeGroceries } from './groceries'
-import type { Recipe, RecipeIngredient } from './types'
+import { ingredients } from './ingredients'
+import type { IngredientInfo, Recipe, RecipeIngredient } from './types'
 
 const r = (...ingredients: RecipeIngredient[]): Recipe => ({
   title: 't',
@@ -10,7 +11,7 @@ const r = (...ingredients: RecipeIngredient[]): Recipe => ({
   steps: [],
 })
 
-const lines = (recipes: Record<string, Recipe>) => mergeGroceries(recipes).flatMap(g => g.lines)
+const lines = (recipes: Record<string, Recipe>) => mergeGroceries(recipes).flatMap(s => s.aisles).flatMap(a => a.lines)
 
 describe('mergeGroceries', () => {
   test('sums qty for the same item and unit', () => {
@@ -75,7 +76,7 @@ describe('mergeGroceries', () => {
     })).toEqual(['sour cream: 1 cup (for topping)'])
   })
 
-  test('groups by aisle in AISLES order, omits empty aisles, sorts items by code unit', () => {
+  test('groups by store in STORES order, then aisle in AISLES order, omits empty aisles, sorts items by code unit', () => {
     expect(mergeGroceries({
       a: r(
         { item: 'pasta', qty: 1, unit: 'box' },
@@ -84,9 +85,57 @@ describe('mergeGroceries', () => {
         { item: 'mushrooms', qty: 1, unit: 'lb' },
       ),
     })).toEqual([
-      { aisle: 'produce', lines: ['mushrooms: 1 lb'] },
-      { aisle: 'dairy', lines: ['sour cream: 1 cup'] },
-      { aisle: 'pantry', lines: ['Prego meat sauce: 1 jar', 'pasta: 1 box'] },
+      { store: 'hyvee', aisles: [{ aisle: 'produce', lines: ['mushrooms: 1 lb'] }] },
+      { store: 'target', aisles: [
+        { aisle: 'dairy', lines: ['sour cream: 1 cup'] },
+        { aisle: 'pantry', lines: ['Prego meat sauce: 1 jar', 'pasta: 1 box'] },
+      ] },
+    ])
+  })
+
+  test('routes by aisle default', () => {
+    expect(mergeGroceries({
+      a: r({ item: 'ground beef', qty: 1, unit: 'lb' }, { item: 'Prego meat sauce', qty: 1, unit: 'jar' }),
+    })).toEqual([
+      { store: 'hyvee', aisles: [{ aisle: 'meat', lines: ['ground beef: 1 lb'] }] },
+      { store: 'target', aisles: [{ aisle: 'pantry', lines: ['Prego meat sauce: 1 jar'] }] },
+    ])
+  })
+
+  test('store override beats aisle default', () => {
+    const registry: Record<string, IngredientInfo> = { ...ingredients, 'Prego meat sauce': { aisle: 'pantry', store: 'hyvee' } }
+    expect(mergeGroceries({ a: r({ item: 'Prego meat sauce', qty: 1, unit: 'jar' }) }, registry)).toEqual([
+      { store: 'hyvee', aisles: [{ aisle: 'pantry', lines: ['Prego meat sauce: 1 jar'] }] },
+    ])
+  })
+
+  test('one group per store even when aisles interleave', () => {
+    const groups = mergeGroceries({
+      a: r(
+        { item: 'mushrooms', qty: 1, unit: 'lb' },
+        { item: 'ground beef', qty: 1, unit: 'lb' },
+        { item: 'sour cream', qty: 1, unit: 'cup' },
+        { item: 'pepperoni' },
+      ),
+    })
+    expect(groups.map(g => [g.store, g.aisles.map(a => a.aisle)])).toEqual([
+      ['hyvee', ['produce', 'meat', 'deli']],
+      ['target', ['dairy']],
+    ])
+  })
+
+  test('omits a store with no items', () => {
+    expect(mergeGroceries({ a: r({ item: 'sour cream', qty: 1, unit: 'cup' }) })).toEqual([
+      { store: 'target', aisles: [{ aisle: 'dairy', lines: ['sour cream: 1 cup'] }] },
+    ])
+  })
+
+  test('skips an item missing from the registry without throwing', () => {
+    const { mushrooms: _, ...registry } = ingredients
+    expect(mergeGroceries({
+      a: r({ item: 'mushrooms', qty: 1, unit: 'lb' }, { item: 'sour cream', qty: 1, unit: 'cup' }),
+    }, registry)).toEqual([
+      { store: 'target', aisles: [{ aisle: 'dairy', lines: ['sour cream: 1 cup'] }] },
     ])
   })
 })
