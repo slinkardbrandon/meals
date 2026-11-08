@@ -36,9 +36,53 @@ dropped: []
 
 ## Groceries
 
-### produce
+### Hy-Vee
+
+#### produce
 - mushrooms: 1 lb (sliced)
 `)
+  })
+
+  test('renders two stores with two aisles each', () => {
+    const fixture: Record<string, Recipe> = {
+      stroganoff: {
+        title: 'Stroganoff',
+        kidFriendly: false,
+        method: 'stovetop',
+        ingredients: [
+          { item: 'mushrooms', qty: 1, unit: 'lb', note: 'sliced' },
+          { item: 'ground beef', qty: 3, unit: 'lb' },
+          { item: 'sour cream', qty: 1, unit: 'cup' },
+          { item: 'Prego meat sauce', qty: 1, unit: 'jar' },
+        ],
+        steps: [],
+      },
+    }
+    const plan: Plan = { week: '2026-W43', starts: '2026-10-19', seed: '2026-W43', dinners: ['stroganoff'], dropped: [] }
+    const text = serializePlan(plan, fixture)
+    expect(text.slice(text.indexOf('## Groceries'))).toBe(`## Groceries
+
+### Hy-Vee
+
+#### produce
+- mushrooms: 1 lb (sliced)
+
+#### meat
+- ground beef: 3 lb
+
+### Target
+
+#### dairy
+- sour cream: 1 cup
+
+#### pantry
+- Prego meat sauce: 1 jar
+`)
+  })
+
+  test('renders zero non-staple items as an empty section', () => {
+    const plan: Plan = { week: '2026-W43', starts: '2026-10-19', seed: '2026-W43', dinners: [], dropped: [] }
+    expect(serializePlan(plan, recipes)).toEndWith('## Groceries\n\n\n')
   })
 
   test('still reads legacy --- frontmatter', () => {

@@ -3,7 +3,8 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { run } from '../main'
-import { parsePlan } from './plan-file'
+import { loadDinners } from './dinners'
+import { parsePlan, serializePlan } from './plan-file'
 
 // Sunday 2026-10-18 is in 2026-W42, so the default target is 2026-W43.
 const now = new Date(2026, 9, 18)
@@ -118,6 +119,20 @@ describe('cli', () => {
     expect(await later('add', '--week', '2026-W42')).toBe(1)
     expect(await later('groceries', '--week', '2026-W42')).toBe(1)
     expect(read('plans/2026/W42.md')).toBe(before)
+  })
+
+  test('groceries rewrites an old-format plan', async () => {
+    const path = 'plans/2026/W43.md'
+    const recipes = await loadDinners()
+    const fresh = serializePlan({ week: '2026-W43', starts: '2026-10-19', seed: '2026-W43', dinners: ['stroganoff'], dropped: [] }, recipes)
+    const prefix = fresh.slice(0, fresh.indexOf('## Groceries'))
+    mkdirSync(dirname(file(path)), { recursive: true })
+    writeFileSync(file(path), `${prefix}## Groceries\n\n### produce\n- mushrooms: 2 lb (sliced)\n`)
+    expect(await cli('groceries', '--week', '2026-W43')).toBe(0)
+    const text = read(path)
+    expect(text.slice(0, text.indexOf('## Groceries'))).toBe(prefix)
+    expect(text).toContain('### Hy-Vee')
+    expect(text).not.toMatch(/^### produce$/m)
   })
 
   test('week prints next week by default and honors --offset', async () => {
