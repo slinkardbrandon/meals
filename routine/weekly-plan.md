@@ -26,7 +26,7 @@ Prompt for the weekly Claude cloud routine (Saturdays at 16:00 UTC: 10:00 CST, 1
 5. For each swap request, run `bun main.ts drop <id> --week <target>` and/or `bun main.ts add [--method M] [--protein P] [--id id] --week <target>`. Commit `Swap <target>: drop <a>, add <b>` (or `Drop <a>` / `Add <b>`), push, and reply with the new dinner list. Never hand-edit the metadata block when a command covers it. Fewer nights means `drop` with no `add`.
 6. On "go", run `bun run check && bun run test`.
    - Under `DRY_RUN=1`: after checks pass, report the PR's state and mergeable state. Close the PR and delete `plan/<target>` with `git push origin --delete`. Stop.
-   - Otherwise: mark the PR ready for review and update its branch from `main`. Enable auto-merge with squash. If the integration can't enable auto-merge, wait for the `typecheck` check to pass, then squash-merge. Report the PR's final state. If it is behind `main`, update the branch again.
+   - Otherwise: mark the PR ready for review and update its branch from `main`. Then run `bun main.ts groceries --week <target>`; if the plan file changed, commit `Regenerate groceries <target>` and push. Enable auto-merge with squash. If the integration can't enable auto-merge, wait for the `typecheck` check to pass, then squash-merge. Report the PR's final state. If it is behind `main`, update the branch again.
 
 ## Rules
 
