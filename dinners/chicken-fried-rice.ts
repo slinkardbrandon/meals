@@ -19,7 +19,7 @@ export default {
     { item: 'white pepper' },
     { item: 'salt' },
     { item: 'scallion', qty: 8, note: 'chopped' },
-    { item: 'sesame oil', qty: 2, unit: 'tsp', optional: true, note: 'toasted' },
+    { item: 'sesame oil', qty: 2, unit: 'tsp', note: 'toasted' },
   ],
   steps: [
     'Cook the rice first. Spread it on a sheet pan to cool and dry out while you prep.',

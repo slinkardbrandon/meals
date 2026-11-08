@@ -39,5 +39,5 @@ The grocery list merges ingredients across meals by `item`, so every item must e
 - `plans/YYYY/Www.md` files are history (`YYYY` is the ISO week-year). Never edit past weeks; the rotation logic depends on them.
 - Change plans through `bun main.ts` (`plan`, `drop`, `add`, `groceries`, `week`), not by hand. The body is regenerated from the `<!-- -->` metadata block at the top, which GitHub hides.
 - Recipe edits change the grocery body. After updating a plan branch from `main`, rerun `groceries --week <id>` and commit if the file changed.
-- Mark optional ingredients with `optional: true`, not a note. The grocery list still includes them, flagged `(optional)`.
+- Default to required. Use `optional: true` only when the user says we often make the dish without it; if we always have it, mark it `staple` in the registry instead. The grocery list still includes optional items, flagged `(optional)`.
 - The weekly routine follows `routine/weekly-plan.md`; keep it in sync with the CLI.
