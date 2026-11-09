@@ -44,6 +44,13 @@ The grocery list merges ingredients across meals by `item`, so every item must e
 - Default to required. Use `optional: true` only when the user says we often make the dish without it; if we always have it, mark it `staple` in the registry instead. The grocery list still includes optional items, flagged `(optional)`.
 - The weekly routine follows `routine/weekly-plan.md`; keep it in sync with the CLI.
 
+## Site
+
+- `site/` is a React + Tailwind SPA bundled by Bun (`bun run site` -> `_site/`), deployed to GitHub Pages by `.github/workflows/pages.yml`.
+- Plan pages render each plan's committed grocery body as-is. The parser handles both layouts (`### aisle` for W43-W45, `### Store` > `#### aisle` after).
+- `site/app/` is browser code with its own tsconfig. It imports types only from `site/app/types.ts` and never imports `src/` or `site/*.ts` (they pull in `node:fs`).
+- `site/app/data.gen.ts` and `_site/` are generated and gitignored. `bun run check` regenerates the data first.
+
 ## Carts
 
 - `.claude/skills/fill-carts/` loads a week's groceries into the Hy-Vee and Target carts. It never checks out.

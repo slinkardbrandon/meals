@@ -3,11 +3,21 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "tsc --noEmit",
-    "test": "TZ=America/Chicago bun test"
+    "check": "bun site/gen-data.ts && tsc --noEmit && tsc -p site/app --noEmit",
+    "test": "TZ=America/Chicago bun test",
+    "site": "bun site/build.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "bun-plugin-tailwind": "^0.1.2",
+    "tailwindcss": "^4.3.5",
     "typescript": "^5.9.0"
+  },
+  "dependencies": {
+    "fuse.js": "^7.5.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   }
 }
