@@ -51,6 +51,8 @@ Run dir: `.carts/runs/<week>/` (gitignored). Store keys: `hyvee`, `target`. Brow
 
 6. **Report.** Run `bun main.ts carts --week <id> --report` and print the report. Suggest new store quirks for `.carts/notes/<store>.md`, following that file's privacy rule. Remind the user to review both carts before checkout.
 
+7. **Close the browsers.** Call `browser_close` on both servers (`mcp__browser-hyvee__browser_close`, `mcp__browser-target__browser_close`). Do this on every exit after step 2, including a stop or error. Keep them open between steps; quote and fill reuse the same windows.
+
 ## Files
 
 - `.carts/config.json`: `{ [store]: { url, location } }`
