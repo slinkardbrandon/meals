@@ -6,9 +6,11 @@ import type { GroceryGroup, SiteData, SiteIngredient, SitePlan, SiteRecipe } fro
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 /** 'Week of Nov 9' from '2026-11-09'. Splits the string; `new Date()` would shift a day in Central time. */
-const weekLabel = (starts: string) => {
-  const [, month, day] = starts.split('-').map(Number)
-  return `Week of ${MONTHS[month! - 1]} ${day}`
+const weekLabel = (week: string, starts: string) => {
+  const match = /^\d{4}-(\d{2})-(\d{2})$/.exec(starts)
+  const month = MONTHS[Number(match?.[1]) - 1]
+  if (!match || !month) throw new Error(`Plan ${week} has invalid starts "${starts}"`)
+  return `Week of ${month} ${Number(match[2])}`
 }
 
 const toIngredient = ({ item, qty, unit, note, optional }: RecipeIngredient): SiteIngredient => {
@@ -70,7 +72,7 @@ const toPlan = (text: string, dinners: Record<string, Recipe>): SitePlan => {
   for (const id of ids) {
     if (!dinners[id]) throw new Error(`Plan ${week} references unknown dinner "${id}"`)
   }
-  return { week, starts, label: weekLabel(starts), dinners: ids, groceries: parseGroceries(text) }
+  return { week, starts, label: weekLabel(week, starts), dinners: ids, groceries: parseGroceries(text) }
 }
 
 /** Pure: recipes plus raw plan file texts in, site data out. */

@@ -142,6 +142,11 @@ describe('buildSiteData', () => {
       .toThrow('Plan 2026-W46 references unknown dinner "foo"')
   })
 
+  test('throws on an invalid starts date', () => {
+    expect(() => buildSiteData({ dinners, planFiles: [planFile('2026-W46', '2026-11', ['chili'])] }))
+      .toThrow('Plan 2026-W46 has invalid starts "2026-11"')
+  })
+
   test('includes every dinner keyed by id', () => {
     const data = buildSiteData({ dinners, planFiles: [] })
     expect(Object.keys(data.dinners).sort()).toEqual(['chili', 'korean-beef-bowl', 'pizza-bagels'])

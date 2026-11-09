@@ -6,13 +6,14 @@ import { useWakeLock } from './useWakeLock'
 /** Links a leading URL; keeps any trailing text, e.g. 'https://... (406_bbq)'. */
 const Source = ({ text }: { text: string }) => {
   const match = /^(https?:\/\/\S+)(.*)$/.exec(text)
-  if (!match) return <>{text}</>
+  const url = match && URL.canParse(match[1]!) ? new URL(match[1]!) : undefined
+  if (!url) return <>{text}</>
   return (
     <>
-      <a href={match[1]} className="text-emerald-800 underline underline-offset-2" rel="noreferrer">
-        {new URL(match[1]!).hostname.replace(/^www\./, '')}
+      <a href={url.href} className="text-emerald-800 underline underline-offset-2" rel="noreferrer">
+        {url.hostname.replace(/^www\./, '')}
       </a>
-      {match[2]}
+      {match![2]}
     </>
   )
 }
