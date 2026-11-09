@@ -7,7 +7,7 @@
         "--user-data-dir",
         "${HOME}/.local/share/meals/chrome-hyvee",
         "--allowed-origins",
-        "https://www.hy-vee.com"
+        "https://www.hy-vee.com;https://cdn.hy-vee.com;https://cdn.sanity.io"
       ]
     },
     "browser-target": {
@@ -17,7 +17,7 @@
         "--user-data-dir",
         "${HOME}/.local/share/meals/chrome-target",
         "--allowed-origins",
-        "https://www.target.com"
+        "https://www.target.com;https://assets.targetimg1.com;https://target.scene7.com;https://redsky.target.com;https://api.target.com;https://gsp.target.com;https://carts.target.com"
       ]
     }
   }
