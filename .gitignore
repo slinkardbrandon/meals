@@ -1,2 +1,4 @@
 node_modules/
 .carts/
+_site/
+site/app/data.gen.ts
