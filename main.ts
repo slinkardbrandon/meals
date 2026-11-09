@@ -1,13 +1,16 @@
 // Weekly dinner planner. See README.md for commands.
 process.env.TZ = 'America/Chicago'
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { isDeepStrictEqual } from 'node:util'
 import { dirname, join } from 'node:path'
 import { parseArgs } from 'node:util'
+import { decide, renderReport, validateQuotes, validateResults, type Decision } from './src/carts'
 import { loadDinners, repoRoot } from './src/dinners'
+import { mergeItems, stapleItems, type GroceryItem } from './src/groceries'
 import { parsePlan, readHistory, serializePlan, type Plan } from './src/plan-file'
 import { add, drop, makePlan, type Filter } from './src/planner'
-import type { Method, Protein, Recipe } from './src/types'
+import { STORES, STORE_NAMES, type Method, type Protein, type Recipe } from './src/types'
 import { addWeeks, weekDiff, weekId, planPath } from './src/week'
 
 export type Context = {
@@ -86,7 +89,71 @@ const commands = {
     for (const id of plan.dinners) assertKnown(id, recipes)
     write(path, plan, recipes)
   },
+
+  async carts(week: string, values: Values, ctx: Context) {
+    const modes = (['fresh', 'decide', 'report'] as const).filter(m => values[m])
+    if (modes.length > 1) throw new Error(`pass at most one of --${modes.join(', --')}`)
+    const dir = join('.carts', 'runs', week)
+    const at = (name: string) => join(dir, name)
+    const readJson = <T>(name: string): T => {
+      const rel = at(name)
+      if (!existsSync(join(ctx.root, rel))) throw new Error(`missing ${rel}`)
+      try {
+        return JSON.parse(readFileSync(join(ctx.root, rel), 'utf8'))
+      } catch (e) {
+        throw new Error(`${rel}: ${(e as Error).message}`)
+      }
+    }
+    const readWeek = <T extends { week: string }>(name: string) => {
+      const value = readJson<T>(name)
+      if (value.week !== week) throw new Error(`${at(name)} is for ${value.week}, not ${week}`)
+      return value
+    }
+    const writeJson = (name: string, value: unknown) => writeFileSync(join(ctx.root, at(name)), JSON.stringify(value, null, 2) + '\n')
+
+    if (values.decide) {
+      const { items } = readWeek<ItemsFile>('items.json')
+      const quotes = STORES.flatMap(store => validateQuotes(store, items, readJson(`quotes-${store}.json`)))
+      const decision = decide(week, items, quotes)
+      writeJson('decision.json', decision)
+      for (const store of STORES) ctx.out(`${STORE_NAMES[store]}: ${decision.carts[store].length}`)
+      ctx.out(`misses: ${decision.misses.length}`)
+      ctx.out(`not carted: ${decision.notCarted.length}`)
+      return
+    }
+
+    if (values.report) {
+      const { staples } = readWeek<ItemsFile>('items.json')
+      const decision = readWeek<Decision>('decision.json')
+      const results = STORES.flatMap(store => validateResults(store, decision, readJson(`results-${store}.json`)))
+      const report = renderReport(decision, results, staples)
+      writeFileSync(join(ctx.root, at('report.md')), report)
+      ctx.out(report.trimEnd())
+      return
+    }
+
+    const { plan } = readPlan(week, ctx)
+    const recipes = await loadDinners()
+    for (const id of plan.dinners) assertKnown(id, recipes)
+    const picked = Object.fromEntries(plan.dinners.map(id => [id, recipes[id]!]))
+    const next: ItemsFile = { week, items: mergeItems(picked), staples: stapleItems(picked) }
+    if (values.fresh) {
+      // The week guard already validated `week`, so this stays inside .carts/runs/.
+      rmSync(join(ctx.root, dir), { recursive: true, force: true })
+    } else if (existsSync(join(ctx.root, at('decision.json')))) {
+      const saved = existsSync(join(ctx.root, at('items.json'))) ? readJson<ItemsFile>('items.json').items : undefined
+      // Round-trip through JSON so optional fields compare the way they were saved.
+      if (!isDeepStrictEqual(JSON.parse(JSON.stringify(next.items)), saved)) {
+        throw new Error('plan changed since decide; rerun with --fresh')
+      }
+    }
+    mkdirSync(join(ctx.root, dir), { recursive: true })
+    writeJson('items.json', next)
+    ctx.out(at('items.json'))
+  },
 }
+
+type ItemsFile = { week: string; items: GroceryItem[]; staples: string[] }
 
 const options = {
   week: { type: 'string' },
@@ -98,6 +165,9 @@ const options = {
   protein: { type: 'string' },
   id: { type: 'string' },
   offset: { type: 'string' },
+  fresh: { type: 'boolean' },
+  decide: { type: 'boolean' },
+  report: { type: 'boolean' },
 } as const
 
 type Values = ReturnType<typeof parseArgs<{ options: typeof options; allowPositionals: true }>>['values']
@@ -126,7 +196,7 @@ export const run = async (argv: string[], ctx: Context): Promise<number> => {
       return 0
     }
     if (!command || !(command in commands)) {
-      throw new Error('usage: bun main.ts <plan|drop|add|groceries|week> [--week YYYY-Www]')
+      throw new Error('usage: bun main.ts <plan|drop|add|groceries|carts|week> [--week YYYY-Www]')
     }
 
     const week = values.week ?? addWeeks(current, 1)

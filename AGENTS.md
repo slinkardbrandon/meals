@@ -27,7 +27,9 @@ The grocery list merges ingredients across meals by `item`, so every item must e
 - New entries: generic, lowercase, singular (`yellow onion`, `garlic`). Keep a brand only when it matters to us (`Prego meat sauce`).
 - Fractions go in `qty`, not `unit`: 1/4 cup is `{ qty: 0.25, unit: 'cup' }`. Add to `Unit` only for a genuinely new unit.
 - List pantry staples too, and mark them `staple: true` in the registry.
-- Store comes from `AISLE_STORE` in `src/types.ts`. Set `store` on an entry only for exceptions.
+- Allowed stores come from `AISLE_STORES` in `src/types.ts`. Set `stores` on an entry only for exceptions.
+- `stores` is ordered: the first is the default and the tiebreaker. One entry locks the item there; `[]` means never carted.
+- Produce, meat, and deli are locked to Hy-Vee for quality. Don't add a fallback store.
 
 ## Lunch items
 
@@ -41,3 +43,10 @@ The grocery list merges ingredients across meals by `item`, so every item must e
 - Recipe edits change the grocery body. After updating a plan branch from `main`, rerun `groceries --week <id>` and commit if the file changed.
 - Default to required. Use `optional: true` only when the user says we often make the dish without it; if we always have it, mark it `staple` in the registry instead. The grocery list still includes optional items, flagged `(optional)`.
 - The weekly routine follows `routine/weekly-plan.md`; keep it in sync with the CLI.
+
+## Carts
+
+- `.claude/skills/fill-carts/` loads a week's groceries into the Hy-Vee and Target carts. It never checks out.
+- `bun main.ts carts` owns routing, price decisions, validation, and the report. Agents only match, quote, and click.
+- `.carts/` is gitignored: run files, product caches, private store notes. Never commit it; the repo is public.
+- Run it supervised. Don't drive the live store sites unattended.

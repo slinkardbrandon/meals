@@ -4,12 +4,13 @@ Family dinner rotation, kid lunch packing, and grocery lists.
 
 - `dinners/*.ts`: one recipe per file, `export default { ... } satisfies Recipe`
 - `lunch-items/*.ts`: one item per file, `satisfies LunchItem`
-- `src/ingredients.ts`: canonical ingredient registry (aisle, aliases, staple, store)
+- `src/ingredients.ts`: canonical ingredient registry (aisle, aliases, staple, stores)
 - `src/kids.ts`: kids and their quirks
 - `src/types.ts`: all types
 - `plans/YYYY/Www.md`: weekly plans, also the rotation history (`YYYY` is the ISO week-year)
 - `main.ts`: the planner CLI
 - `routine/weekly-plan.md`: prompt for the weekly cloud routine
+- `.claude/skills/fill-carts/`: skill that fills the store carts from a plan (never checks out)
 
 ## Commands
 
@@ -31,6 +32,7 @@ bun main.ts drop <id>                          # move a dinner to dropped
 bun main.ts add [--method M] [--protein P] [--id id]
 bun main.ts groceries                          # regenerate the body after hand edits
 bun main.ts week [--offset N]                  # print the week id N weeks out (default 1)
+bun main.ts carts [--fresh|--decide|--report]  # cart run files under .carts/runs/<week>/
 ```
 
 - Rotation: a dinner planned 1 week away (either direction) is excluded; 2 weeks away gets 1/4 weight.
