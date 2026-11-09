@@ -1,10 +1,12 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { run } from '../main'
 import { loadDinners } from './dinners'
+import type { GroceryItem } from './groceries'
 import { parsePlan, serializePlan } from './plan-file'
+import { STORES } from './types'
 
 // Sunday 2026-10-18 is in 2026-W42, so the default target is 2026-W43.
 const now = new Date(2026, 9, 18)
@@ -144,3 +146,150 @@ describe('cli', () => {
     expect(lines).toEqual(['2026-W43', '2026-W42', '2026-W44'])
   })
 })
+
+describe('carts', () => {
+  const run_ = '.carts/runs/2026-W43'
+  const json = (rel: string) => JSON.parse(read(rel))
+  const put = (rel: string, value: unknown) => {
+    mkdirSync(dirname(file(rel)), { recursive: true })
+    writeFileSync(file(rel), JSON.stringify(value, null, 2) + '\n')
+  }
+  const planWith = (dinners: string[]) => {
+    const path = 'plans/2026/W43.md'
+    mkdirSync(dirname(file(path)), { recursive: true })
+    return loadDinners().then(recipes =>
+      writeFileSync(file(path), serializePlan({ week: '2026-W43', starts: '2026-10-19', seed: '2026-W43', dinners, dropped: [] }, recipes)))
+  }
+  /** Quotes every 2+ store item in stock at both stores; Target is cheaper. */
+  const quoteAll = () => {
+    const { items } = json(`${run_}/items.json`) as { items: GroceryItem[] }
+    for (const store of STORES) {
+      put(`${run_}/quotes-${store}.json`, items.filter(i => i.stores.length > 1).map(i => ({
+        item: i.item, store, inStock: true, product: `${store} ${i.item}`, productId: `${store}-${i.item}`, count: 1,
+        total: store === 'target' ? 2 : 3,
+      })))
+    }
+  }
+
+  test('writes items.json with items and staples', async () => {
+    await planWith(['stroganoff'])
+    expect(await cli('carts', '--week', '2026-W43')).toBe(0)
+    const saved = json(`${run_}/items.json`)
+    expect(saved.week).toBe('2026-W43')
+    expect(saved.items.map((i: GroceryItem) => i.item)).toContain('ground beef')
+    expect(saved.staples).toEqual(['A1 sauce', 'all-purpose flour', 'black pepper', 'olive oil', 'salt'])
+    expect(read(`${run_}/items.json`)).toEndWith('}\n')
+  })
+
+  test('no plan exits 1', async () => {
+    expect(await cli('carts', '--week', '2026-W43')).toBe(1)
+    expect(existsSync(file(run_))).toBe(false)
+  })
+
+  test('refuses after --decide when the plan changed, leaving the run dir untouched', async () => {
+    await planWith(['stroganoff'])
+    expect(await cli('carts', '--week', '2026-W43')).toBe(0)
+    quoteAll()
+    expect(await cli('carts', '--week', '2026-W43', '--decide')).toBe(0)
+    const before = ['items.json', 'decision.json'].map(f => read(`${run_}/${f}`))
+    await planWith(['stroganoff', 'flautas'])
+    expect(await cli('carts', '--week', '2026-W43')).toBe(1)
+    expect(['items.json', 'decision.json'].map(f => read(`${run_}/${f}`))).toEqual(before)
+  })
+
+  test('rerun with an unchanged plan keeps decision.json', async () => {
+    await planWith(['stroganoff'])
+    expect(await cli('carts', '--week', '2026-W43')).toBe(0)
+    quoteAll()
+    expect(await cli('carts', '--week', '2026-W43', '--decide')).toBe(0)
+    expect(await cli('carts', '--week', '2026-W43')).toBe(0)
+    expect(existsSync(file(`${run_}/decision.json`))).toBe(true)
+  })
+
+  test('--fresh removes the run dir, then writes a new items.json', async () => {
+    await planWith(['stroganoff'])
+    expect(await cli('carts', '--week', '2026-W43')).toBe(0)
+    quoteAll()
+    expect(await cli('carts', '--week', '2026-W43', '--decide')).toBe(0)
+    await planWith(['flautas'])
+    expect(await cli('carts', '--week', '2026-W43', '--fresh')).toBe(0)
+    expect(readdirSync(file(run_))).toEqual(['items.json'])
+    expect(json(`${run_}/items.json`).items.map((i: GroceryItem) => i.item)).not.toContain('mushrooms')
+  })
+
+  test('--decide writes decision.json from the quote files', async () => {
+    await planWith(['stroganoff'])
+    await cli('carts', '--week', '2026-W43')
+    quoteAll()
+    const lines: string[] = []
+    expect(await run(['carts', '--week', '2026-W43', '--decide'], { root, now, out: s => lines.push(s), err: quiet })).toBe(0)
+    const decision = json(`${run_}/decision.json`)
+    expect(decision.week).toBe('2026-W43')
+    expect(decision.carts.target.map((a: { item: string }) => a.item)).toContain('sour cream')
+    expect(decision.carts.hyvee.map((a: { item: string }) => a.item)).toContain('ground beef')
+    expect(lines).toEqual([
+      `Hy-Vee: ${decision.carts.hyvee.length}`,
+      `Target: ${decision.carts.target.length}`,
+      'misses: 0',
+      'not carted: 0',
+    ])
+  })
+
+  test('--decide with a malformed quotes file exits 1 without writing', async () => {
+    await planWith(['stroganoff'])
+    await cli('carts', '--week', '2026-W43')
+    quoteAll()
+    put(`${run_}/quotes-target.json`, [{ item: 'sour cream', store: 'target', inStock: 'yes' }])
+    expect(await cli('carts', '--week', '2026-W43', '--decide')).toBe(1)
+    expect(existsSync(file(`${run_}/decision.json`))).toBe(false)
+  })
+
+  test('--decide with a missing quotes file exits 1', async () => {
+    await planWith(['stroganoff'])
+    await cli('carts', '--week', '2026-W43')
+    quoteAll()
+    rmSync(file(`${run_}/quotes-hyvee.json`))
+    expect(await cli('carts', '--week', '2026-W43', '--decide')).toBe(1)
+    expect(existsSync(file(`${run_}/decision.json`))).toBe(false)
+  })
+
+  test('--decide when items.json is for another week exits 1', async () => {
+    await planWith(['stroganoff'])
+    await cli('carts', '--week', '2026-W43')
+    quoteAll()
+    put(`${run_}/items.json`, { ...json(`${run_}/items.json`), week: '2026-W44' })
+    expect(await cli('carts', '--week', '2026-W43', '--decide')).toBe(1)
+    expect(existsSync(file(`${run_}/decision.json`))).toBe(false)
+  })
+
+  test('--report prints the report and writes report.md', async () => {
+    await planWith(['stroganoff'])
+    await cli('carts', '--week', '2026-W43')
+    quoteAll()
+    await cli('carts', '--week', '2026-W43', '--decide')
+    const decision = json(`${run_}/decision.json`)
+    for (const store of STORES) {
+      put(`${run_}/results-${store}.json`, decision.carts[store].map((a: { item: string }) => ({
+        item: a.item, store, status: 'carted', product: `P ${a.item}`, productId: a.item, count: 1,
+      })))
+    }
+    const lines: string[] = []
+    expect(await run(['carts', '--week', '2026-W43', '--report'], { root, now, out: s => lines.push(s), err: quiet })).toBe(0)
+    const report = read(`${run_}/report.md`)
+    expect(report).toStartWith('# Carts 2026-W43\n\n## Hy-Vee\n')
+    expect(report).toContain('## Check you have these\n\n- A1 sauce\n')
+    expect(lines).toEqual([report.trimEnd()])
+  })
+
+  test('--decide --report together exits 1', async () => {
+    await planWith(['stroganoff'])
+    await cli('carts', '--week', '2026-W43')
+    expect(await cli('carts', '--week', '2026-W43', '--decide', '--report')).toBe(1)
+  })
+
+  test('refuses a past week', async () => {
+    const later = (...argv: string[]) => run(argv, { root, now: new Date(2026, 10, 8), out: quiet, err: quiet })
+    expect(await later('carts', '--week', '2026-W43')).toBe(1)
+  })
+})
+

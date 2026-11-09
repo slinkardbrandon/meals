@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'bun:test'
+import { ingredients } from './ingredients'
 import { parsePlan, serializePlan, type Plan } from './plan-file'
-import type { Recipe } from './types'
+import type { IngredientInfo, Recipe } from './types'
 
 const recipes: Record<string, Recipe> = {
   stroganoff: {
@@ -77,6 +78,32 @@ dropped: []
 
 #### pantry
 - Prego meat sauce: 1 jar
+`)
+  })
+
+  test('renders stores: [] items under Any store, last', () => {
+    const registry: Record<string, IngredientInfo> = { ...ingredients, pasta: { aisle: 'pantry', stores: [] } }
+    const fixture: Record<string, Recipe> = {
+      stroganoff: {
+        title: 'Stroganoff',
+        kidFriendly: false,
+        method: 'stovetop',
+        ingredients: [{ item: 'pasta', qty: 1, unit: 'box' }, { item: 'mushrooms', qty: 1, unit: 'lb' }],
+        steps: [],
+      },
+    }
+    const plan: Plan = { week: '2026-W43', starts: '2026-10-19', seed: '2026-W43', dinners: ['stroganoff'], dropped: [] }
+    expect(serializePlan(plan, fixture, registry)).toEndWith(`## Groceries
+
+### Hy-Vee
+
+#### produce
+- mushrooms: 1 lb
+
+### Any store
+
+#### pantry
+- pasta: 1 box
 `)
   })
 

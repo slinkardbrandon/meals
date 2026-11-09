@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { formatQty, mergeGroceries } from './groceries'
+import { formatQty, mergeGroceries, mergeItems, stapleItems } from './groceries'
 import { ingredients } from './ingredients'
 import type { IngredientInfo, Recipe, RecipeIngredient } from './types'
 
@@ -103,7 +103,7 @@ describe('mergeGroceries', () => {
   })
 
   test('store override beats aisle default', () => {
-    const registry: Record<string, IngredientInfo> = { ...ingredients, 'Prego meat sauce': { aisle: 'pantry', store: 'hyvee' } }
+    const registry: Record<string, IngredientInfo> = { ...ingredients, 'Prego meat sauce': { aisle: 'pantry', stores: ['hyvee'] } }
     expect(mergeGroceries({ a: r({ item: 'Prego meat sauce', qty: 1, unit: 'jar' }) }, registry)).toEqual([
       { store: 'hyvee', aisles: [{ aisle: 'pantry', lines: ['Prego meat sauce: 1 jar'] }] },
     ])
@@ -137,5 +137,54 @@ describe('mergeGroceries', () => {
     }, registry)).toEqual([
       { store: 'target', aisles: [{ aisle: 'dairy', lines: ['sour cream: 1 cup'] }] },
     ])
+  })
+
+  test('groups a stores: [] item under store null, after every store', () => {
+    const registry: Record<string, IngredientInfo> = { ...ingredients, pasta: { aisle: 'pantry', stores: [] } }
+    expect(mergeGroceries({
+      a: r({ item: 'pasta', qty: 1, unit: 'box' }, { item: 'sour cream', qty: 1, unit: 'cup' }, { item: 'mushrooms', qty: 1, unit: 'lb' }),
+    }, registry)).toEqual([
+      { store: 'hyvee', aisles: [{ aisle: 'produce', lines: ['mushrooms: 1 lb'] }] },
+      { store: 'target', aisles: [{ aisle: 'dairy', lines: ['sour cream: 1 cup'] }] },
+      { store: null, aisles: [{ aisle: 'pantry', lines: ['pasta: 1 box'] }] },
+    ])
+  })
+})
+
+describe('mergeItems', () => {
+  test('returns non-staple items sorted by item with aisle, stores, line, and optional', () => {
+    expect(mergeItems({
+      a: r(
+        { item: 'sour cream', qty: 1, unit: 'cup' },
+        { item: 'olive oil', qty: 1, unit: 'tbsp' },
+        { item: 'apple', optional: true },
+        { item: 'mushrooms', qty: 1, unit: 'lb', note: 'sliced' },
+        { item: 'Prego meat sauce', qty: 1, unit: 'jar' },
+      ),
+    })).toEqual([
+      { item: 'Prego meat sauce', aisle: 'pantry', stores: ['target', 'hyvee'], line: 'Prego meat sauce: 1 jar', optional: false },
+      { item: 'apple', aisle: 'produce', stores: ['hyvee'], line: 'apple (optional)', optional: true },
+      { item: 'mushrooms', aisle: 'produce', stores: ['hyvee'], line: 'mushrooms: 1 lb (sliced)', optional: false },
+      { item: 'sour cream', aisle: 'dairy', stores: ['target', 'hyvee'], line: 'sour cream: 1 cup', optional: false },
+    ])
+  })
+
+  test('a stores override beats the aisle default; an empty override yields []', () => {
+    const registry: Record<string, IngredientInfo> = {
+      ...ingredients,
+      'sour cream': { aisle: 'dairy', stores: ['hyvee'] },
+      pasta: { aisle: 'pantry', stores: [] },
+    }
+    expect(mergeItems({ a: r({ item: 'sour cream' }, { item: 'pasta' }, { item: 'pepperoni' }) }, registry).map(i => [i.item, i.stores]))
+      .toEqual([['pasta', []], ['pepperoni', ['hyvee', 'target']], ['sour cream', ['hyvee']]])
+  })
+})
+
+describe('stapleItems', () => {
+  test('returns sorted, deduped staples used across dinners', () => {
+    expect(stapleItems({
+      a: r({ item: 'salt', qty: 1, unit: 'tsp' }, { item: 'olive oil', qty: 1, unit: 'tbsp' }, { item: 'sour cream' }),
+      b: r({ item: 'salt' }, { item: 'black pepper' }),
+    })).toEqual(['black pepper', 'olive oil', 'salt'])
   })
 })

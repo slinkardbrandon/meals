@@ -44,7 +44,7 @@ export const ingredients = {
   'yellow mustard': { aisle: 'pantry', staple: true, aliases: ['mustard'] },
   'deli ham': { aisle: 'deli' },
   'deli turkey': { aisle: 'deli' },
-  pepperoni: { aisle: 'deli' },
+  pepperoni: { aisle: 'deli', stores: ['hyvee', 'target'] },
   "Thomas' plain bagels": { aisle: 'bakery', aliases: ['bagels', 'plain bagels'] },
   'flank steak': { aisle: 'meat', aliases: ['steak'] },
   'bell pepper': { aisle: 'produce', aliases: ['bell peppers', 'peppers'] },

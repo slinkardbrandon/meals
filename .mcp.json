@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "browser-hyvee": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@0.0.83",
+        "--user-data-dir",
+        "${HOME}/.local/share/meals/chrome-hyvee",
+        "--allowed-origins",
+        "https://www.hy-vee.com"
+      ]
+    },
+    "browser-target": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@0.0.83",
+        "--user-data-dir",
+        "${HOME}/.local/share/meals/chrome-target",
+        "--allowed-origins",
+        "https://www.target.com"
+      ]
+    }
+  }
+}

@@ -9,22 +9,22 @@ export type Store = typeof STORES[number]
 
 export const STORE_NAMES: Record<Store, string> = { hyvee: 'Hy-Vee', target: 'Target' }
 
-/** Where each aisle is bought unless an ingredient sets `store`. */
-export const AISLE_STORE: Record<Aisle, Store> = {
-  produce: 'hyvee',
-  meat: 'hyvee',
-  deli: 'hyvee',
-  dairy: 'target',
-  bakery: 'target',
-  pantry: 'target',
-  frozen: 'target',
-  spices: 'target',
+/** Allowed stores per aisle unless an ingredient sets `stores`. First is the default. */
+export const AISLE_STORES: Record<Aisle, readonly Store[]> = {
+  produce: ['hyvee'],
+  meat: ['hyvee'],
+  deli: ['hyvee'],
+  dairy: ['target', 'hyvee'],
+  bakery: ['target', 'hyvee'],
+  pantry: ['target', 'hyvee'],
+  frozen: ['target', 'hyvee'],
+  spices: [],
 }
 
 export type IngredientInfo = {
   aisle: Aisle
-  /** Overrides the aisle default in `AISLE_STORE`. */
-  store?: Store
+  /** Overrides `AISLE_STORES`. First is the default; one entry locks; `[]` never carts. */
+  stores?: readonly Store[]
   aliases?: readonly string[]
   /** Always on hand; left off the grocery list unless asked. */
   staple?: boolean
