@@ -8,6 +8,7 @@ Prompt for the weekly Claude cloud routine (Saturdays at 16:00 UTC: 10:00 CST, 1
 - Every command after step 1 passes `--week <target>`.
 - `DRY_RUN=1` in the invoking prompt means: never merge a PR or mark one ready for review.
 - Compute week ids only through `main.ts`. It pins `America/Chicago`.
+- Plan 4 dinners per week for now (`--count 4`; the CLI default stays 5).
 
 ## GitHub access
 
@@ -21,7 +22,7 @@ Prompt for the weekly Claude cloud routine (Saturdays at 16:00 UTC: 10:00 CST, 1
 3. Pick one:
    - If `plans/YYYY/Www.md` for `<target>` exists on `main`, report "<target> is already planned" and stop.
    - If an open PR for `plan/<target>` exists, check out that branch and go to step 4. Do not re-plan or force push.
-   - Otherwise run `bun main.ts plan --week <target>`. Commit `Plan dinners <target>` on branch `plan/<target>` and push. Open a draft PR into `main` titled `Dinner plan <target>` with the dinner list in the body. If `plan` printed a shortfall warning, include it in the body.
+   - Otherwise run `bun main.ts plan --week <target> --count 4`. Commit `Plan dinners <target>` on branch `plan/<target>` and push. Open a draft PR into `main` titled `Dinner plan <target>` with the dinner list in the body. If `plan` printed a shortfall warning, include it in the body.
 4. End the turn with: "Good to go, or any swaps / fewer nights?"
 5. For each swap request, run `bun main.ts drop <id> --week <target>` and/or `bun main.ts add [--method M] [--protein P] [--id id] --week <target>`. Commit `Swap <target>: drop <a>, add <b>` (or `Drop <a>` / `Add <b>`), push, and reply with the new dinner list. Never hand-edit the metadata block when a command covers it. Fewer nights means `drop` with no `add`.
 6. On "go", run `bun run check && bun run test`.
